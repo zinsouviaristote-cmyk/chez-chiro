@@ -1,0 +1,476 @@
+{
+  "source": "https://www.chezchiro.com/",
+  "captured": "2026-10-19T12:11:19.966Z",
+  "notes": [
+    "Prices are FCFA. Multi-value prices (e.g. 3000/3500/4000/5000/6000) are tiers the site never explains — confirm with owner.",
+    "\"price_gap\": true means the site shows \"..\" inside the price list (a tier is missing or unclear).",
+    "Text: mojibake decoded; spelling otherwise left as published. See BRIEF.md for corrections to validate.",
+    "price_display_demo: demo working assumption (BRIEF.md §7) — multi-level prices shown as \"à partir de <lowest> FCFA\", single prices as-is. To confirm with owner."
+  ],
+  "categories": [
+    {
+      "id": "repas",
+      "label": "Repas",
+      "items": [
+        {
+          "name": "Croupion de dinde",
+          "price_raw": "FCFA3000/3500/4000/5000/6000",
+          "prices_fcfa": [
+            3000,
+            3500,
+            4000,
+            5000,
+            6000
+          ],
+          "price_gap": false,
+          "description": "Avec Piron ou akassa ou riz ou Attieke ou frite alloco",
+          "image_source": "https://logiciel.chezchiro.com/plats/1000050596.jpg",
+          "image_local": "research/raw-images/website/menu/01-croupion-de-dinde.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 3 000 FCFA"
+        },
+        {
+          "name": "Bouillie : Tapioriz au lait",
+          "price_raw": "FCFA1500/2000/2500/3000/5000",
+          "prices_fcfa": [
+            1500,
+            2000,
+            2500,
+            3000,
+            5000
+          ],
+          "price_gap": false,
+          "description": "Avec arachide",
+          "image_source": "https://logiciel.chezchiro.com/plats/1014275504.jpg",
+          "image_local": "research/raw-images/website/menu/02-bouillie-tapioriz.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 1 500 FCFA"
+        },
+        {
+          "name": "Entrée+résistant (Hors d'œuvre + Riz au gras)",
+          "price_raw": "FCFA4500/5000/6000/7000/8000",
+          "prices_fcfa": [
+            4500,
+            5000,
+            6000,
+            7000,
+            8000
+          ],
+          "price_gap": false,
+          "description": "Avec mouton ou lapin ou aileron ou poisson ou poulet bicyclette braisé",
+          "image_source": "https://logiciel.chezchiro.com/plats/5642227.jpg",
+          "image_local": "research/raw-images/website/menu/03-entree-resistant.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 4 500 FCFA"
+        },
+        {
+          "name": "Jus d'ananas, Bissap, gingembre ou tamarin",
+          "price_raw": "FCFA500",
+          "prices_fcfa": [
+            500
+          ],
+          "price_gap": false,
+          "description": "Jus de fruit naturel",
+          "image_source": "https://logiciel.chezchiro.com/plats/4950024.jpg",
+          "image_local": "research/raw-images/website/menu/04-jus-assortis.jpg",
+          "flags": [],
+          "price_display_demo": "500 FCFA"
+        },
+        {
+          "name": "Yaourt ou Dèguè mil ou Dèguè couscous",
+          "price_raw": "FCFA600",
+          "prices_fcfa": [
+            600
+          ],
+          "price_gap": false,
+          "description": "Produit laitier",
+          "image_source": "https://logiciel.chezchiro.com/plats/13128.jpg",
+          "image_local": "research/raw-images/website/menu/05-yaourt-degue.jpg",
+          "flags": [],
+          "price_display_demo": "600 FCFA"
+        },
+        {
+          "name": "Pack Banger",
+          "price_raw": "FCFA12000",
+          "prices_fcfa": [
+            12000
+          ],
+          "price_gap": false,
+          "description": "Riz+(hors d'œuvre ou frite)+(poulet braisé ou lapin braisé)+ Wassa wassa avec deux ailerons+ chawarma + un jus de fruits naturel+ un yaourt où deguè + un sac Cadeau",
+          "image_source": "https://logiciel.chezchiro.com/plats/4514840.jpg",
+          "image_local": "research/raw-images/website/menu/06-pack-banger.jpg",
+          "flags": [],
+          "price_display_demo": "12 000 FCFA"
+        },
+        {
+          "name": "Mélange riz au gras et cassoulet",
+          "price_raw": "FCFA4000/4500/5000/6000/7000",
+          "prices_fcfa": [
+            4000,
+            4500,
+            5000,
+            6000,
+            7000
+          ],
+          "price_gap": false,
+          "description": "Avec poulet bicyclette braisé ou mouton ou lapin ou aileron ou poulet ou poisson",
+          "image_source": "https://logiciel.chezchiro.com/plats/1021620470.jpg",
+          "image_local": "research/raw-images/website/menu/07-melange-riz-gras-cassoulet.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 4 000 FCFA"
+        },
+        {
+          "name": "Cassoulet avec pain ou gari",
+          "price_raw": "FCFA3000/3500/../5000/6000",
+          "prices_fcfa": [
+            3000,
+            3500,
+            5000,
+            6000
+          ],
+          "price_gap": true,
+          "description": "Contient viande de boeuf en de petits morceaux et saucisses",
+          "image_source": "https://logiciel.chezchiro.com/plats/176302.jpg",
+          "image_local": "research/raw-images/website/menu/08-cassoulet.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 3 000 FCFA"
+        },
+        {
+          "name": "Sauce Gbota Royal (la tête de mouton)",
+          "price_raw": "FCFA5000/9000",
+          "prices_fcfa": [
+            5000,
+            9000
+          ],
+          "price_gap": false,
+          "description": "Avec Akassa ou Piron",
+          "image_source": "https://logiciel.chezchiro.com/plats/1011071702.jpg",
+          "image_local": "research/raw-images/website/menu/09-sauce-gbota-royal.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 5 000 FCFA"
+        },
+        {
+          "name": "Sauce assrokouin bien garnie",
+          "price_raw": "FCFA3000/3500/4000/5000/6000",
+          "prices_fcfa": [
+            3000,
+            3500,
+            4000,
+            5000,
+            6000
+          ],
+          "price_gap": false,
+          "description": "Avec telibô ou Agbeli",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20240916-WA0001(14).jpg",
+          "image_local": "research/raw-images/website/menu/10-sauce-assrokouin.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 3 000 FCFA"
+        },
+        {
+          "name": "Telibo avec sauce mouton",
+          "price_raw": "FCFA3000/3500/4000/5000/6000",
+          "prices_fcfa": [
+            3000,
+            3500,
+            4000,
+            5000,
+            6000
+          ],
+          "price_gap": false,
+          "description": "avec telibo ou Akassa",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20240703-WA0001(1).jpg",
+          "image_local": "research/raw-images/website/menu/11-telibo-sauce-mouton.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 3 000 FCFA"
+        },
+        {
+          "name": "Sauce mouton",
+          "price_raw": "FCFA3000/3500/4000/5000/6000",
+          "prices_fcfa": [
+            3000,
+            3500,
+            4000,
+            5000,
+            6000
+          ],
+          "price_gap": false,
+          "description": "Avec telibô ou riz blanc ou Agbeli",
+          "image_source": "https://logiciel.chezchiro.com/plats/55928847-curry-de-mouton-de-style-indien-avec-sauce-%C3%83%C2%A9pic%C3%83%C2%A9e-%C3%83%C2%A9paisse-plat-de-viande-de-style-indien.jpg",
+          "image_local": null,
+          "flags": [
+            "image_broken_on_site",
+            "stock_photo_filename"
+          ],
+          "price_display_demo": "à partir de 3 000 FCFA"
+        },
+        {
+          "name": "Riz au gras au petit pois",
+          "price_raw": "FCFA3000/3500/4000/5000/6000",
+          "prices_fcfa": [
+            3000,
+            3500,
+            4000,
+            5000,
+            6000
+          ],
+          "price_gap": false,
+          "description": "avec poulet bicyclette braisé ou lapin braisé ou mouton ou aileron ou poisson ou croupion de dinde",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20231214-WA0004.jpg",
+          "image_local": "research/raw-images/website/menu/12-riz-gras-petit-pois.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 3 000 FCFA"
+        },
+        {
+          "name": "Hors d'oeuvres à Chaud",
+          "price_raw": "FCFA3000/3500/4000/5000/6000",
+          "prices_fcfa": [
+            3000,
+            3500,
+            4000,
+            5000,
+            6000
+          ],
+          "price_gap": false,
+          "description": "avec du pain",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20231114-WA0009.jpg",
+          "image_local": "research/raw-images/website/menu/13-hors-doeuvres-chaud.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 3 000 FCFA"
+        },
+        {
+          "name": "Telibo",
+          "price_raw": "FCFA3000/3500/../5000/6000",
+          "prices_fcfa": [
+            3000,
+            3500,
+            5000,
+            6000
+          ],
+          "price_gap": true,
+          "description": "Acec sauce graine ou sauce arachides",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20231204-WA0000.jpg",
+          "image_local": "research/raw-images/website/menu/14-telibo.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 3 000 FCFA"
+        },
+        {
+          "name": "Attieke",
+          "price_raw": "FCFA3000/3500/4000/5000/6000",
+          "prices_fcfa": [
+            3000,
+            3500,
+            4000,
+            5000,
+            6000
+          ],
+          "price_gap": false,
+          "description": "avec poulet bicyclette braisé ou lapin braisé ou mouton braisé ou aileron braisé ou aloco poisson (silivi ou tilapia) ou croupion de dinde. NB: Le plat avec le tilapia est à partir de 4000 et avec poisson silivi à partir de 3000",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20230709-WA0002(6).jpg",
+          "image_local": "research/raw-images/website/menu/15-attieke.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 3 000 FCFA"
+        },
+        {
+          "name": "Frites avec aloco",
+          "price_raw": "FCFA3000/3500/4000/5000/6000",
+          "prices_fcfa": [
+            3000,
+            3500,
+            4000,
+            5000,
+            6000
+          ],
+          "price_gap": false,
+          "description": "avec poulet bicyclette braisé ou lapin braisé ou mouton Braisé ou aileron braisé ou poisson (silivi ou tilapia) ou croupion de dinde. NB: Le plat avec le tilapia est à partir de 4000",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20231125-WA0015.jpg",
+          "image_local": "research/raw-images/website/menu/16-frites-aloco.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 3 000 FCFA"
+        },
+        {
+          "name": "Poulet bicyclette braisé Complet",
+          "price_raw": "FCFA6000f",
+          "prices_fcfa": [
+            6000
+          ],
+          "price_gap": false,
+          "description": "Poulet entier braisé sans accompagnement.",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG_20221123_105350_519.jpg",
+          "image_local": "research/raw-images/website/menu/17-poulet-bicyclette-complet.jpg",
+          "flags": [],
+          "price_display_demo": "6 000 FCFA"
+        },
+        {
+          "name": "Wassa wassa",
+          "price_raw": "FCFA3000/3500/4000/5000/6000",
+          "prices_fcfa": [
+            3000,
+            3500,
+            4000,
+            5000,
+            6000
+          ],
+          "price_gap": false,
+          "description": "avec poulet bicyclette braisé ou lapin braisé ou mouton braisé ou aileron braisé ou poisson (silivi ou tilapia) ou croupion de dinde NB: Le plat avec le tilapia est à partir de 3500",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20231111-WA0015(2).jpg",
+          "image_local": "research/raw-images/website/menu/18-wassa-wassa.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 3 000 FCFA"
+        },
+        {
+          "name": "Chawarma du chef",
+          "price_raw": "FCFA3500/4000/5000/6000",
+          "prices_fcfa": [
+            3500,
+            4000,
+            5000,
+            6000
+          ],
+          "price_gap": false,
+          "description": "Viande de boeuf et fromage fondant",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20231124-WA0002(1).jpg",
+          "image_local": "research/raw-images/website/menu/19-chawarma.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 3 500 FCFA"
+        },
+        {
+          "name": "Chawarma standard",
+          "price_raw": "FCFA2000/2500/3000/4000",
+          "prices_fcfa": [
+            2000,
+            2500,
+            3000,
+            4000
+          ],
+          "price_gap": false,
+          "description": "Avec Viande de bœuf",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20231124-WA0002(1).jpg",
+          "image_local": "research/raw-images/website/menu/19-chawarma.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 2 000 FCFA"
+        },
+        {
+          "name": "Portions frites",
+          "price_raw": "FCFA1000",
+          "prices_fcfa": [
+            1000
+          ],
+          "price_gap": false,
+          "description": "portions de frites, aloko, ou de riz",
+          "image_source": "https://logiciel.chezchiro.com/plats/Frites-maison.jpg",
+          "image_local": "research/raw-images/website/menu/20-portion-frites.jpg",
+          "flags": [
+            "probably_stock_photo"
+          ],
+          "price_display_demo": "1 000 FCFA"
+        },
+        {
+          "name": "Riz au gras",
+          "price_raw": "FCFA3000/3500/4000.../6000",
+          "prices_fcfa": [
+            3000,
+            3500,
+            4000,
+            6000
+          ],
+          "price_gap": true,
+          "description": "avec poulet bicyclette ou lapin braisé ou mouton braisé ou aileron braisé ou poisson(silivi ou tilapia) NB: le plat avec le tilapia est à partir de 3500",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20230910-WA0002(2).jpg",
+          "image_local": "research/raw-images/website/menu/21-riz-au-gras.jpg",
+          "flags": [],
+          "price_display_demo": "à partir de 3 000 FCFA"
+        }
+      ]
+    },
+    {
+      "id": "dessert",
+      "label": "Desserts",
+      "items": [
+        {
+          "name": "degue couscous",
+          "price_raw": "FCFA600",
+          "prices_fcfa": [
+            600
+          ],
+          "price_gap": false,
+          "description": "0,33cl",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20231130-WA0042.jpg",
+          "image_local": "research/raw-images/website/menu/22-dessert-degue-couscous.jpg",
+          "flags": [],
+          "price_display_demo": "600 FCFA"
+        },
+        {
+          "name": "Yaourt",
+          "price_raw": "FCFA600",
+          "prices_fcfa": [
+            600
+          ],
+          "price_gap": false,
+          "description": "0,33cl",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20231130-WA0043.jpg",
+          "image_local": "research/raw-images/website/menu/23-dessert-yaourt.jpg",
+          "flags": [],
+          "price_display_demo": "600 FCFA"
+        }
+      ]
+    },
+    {
+      "id": "jus",
+      "label": "Jus",
+      "items": [
+        {
+          "name": "Jus de Bissap",
+          "price_raw": "FCFA500",
+          "prices_fcfa": [
+            500
+          ],
+          "price_gap": false,
+          "description": "0,5 litre",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20231130-WA0039.jpg",
+          "image_local": "research/raw-images/website/menu/24-jus-bissap.jpg",
+          "flags": [],
+          "price_display_demo": "500 FCFA"
+        },
+        {
+          "name": "jus de tamarin",
+          "price_raw": "FCFA500",
+          "prices_fcfa": [
+            500
+          ],
+          "price_gap": false,
+          "description": "0,5 Litre",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20231130-WA0041.jpg",
+          "image_local": "research/raw-images/website/menu/25-jus-tamarin.jpg",
+          "flags": [],
+          "price_display_demo": "500 FCFA"
+        },
+        {
+          "name": "Jus de gingembre",
+          "price_raw": "FCFA500",
+          "prices_fcfa": [
+            500
+          ],
+          "price_gap": false,
+          "description": "0,5 litre",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20231130-WA0038.jpg",
+          "image_local": "research/raw-images/website/menu/26-jus-gingembre.jpg",
+          "flags": [],
+          "price_display_demo": "500 FCFA"
+        },
+        {
+          "name": "Jus d'ananas",
+          "price_raw": "FCFA500",
+          "prices_fcfa": [
+            500
+          ],
+          "price_gap": false,
+          "description": "0,5 Litre",
+          "image_source": "https://logiciel.chezchiro.com/plats/IMG-20231130-WA0040.jpg",
+          "image_local": "research/raw-images/website/menu/27-jus-ananas.jpg",
+          "flags": [],
+          "price_display_demo": "500 FCFA"
+        }
+      ]
+    }
+  ]
+}
