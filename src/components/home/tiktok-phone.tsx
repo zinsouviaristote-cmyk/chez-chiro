@@ -13,8 +13,8 @@ export function TikTokPhone({ video }: { video: TikTokVideo }) {
   const [playing, setPlaying] = useState(false);
 
   return (
-    <div className="group relative rounded-[2.4rem] bg-[#1b0a03] p-2 shadow-[0_30px_60px_-30px_rgb(0_0_0/0.8)] ring-1 ring-cream/10 transition-transform duration-700 ease-[var(--ease-out-soft)] hover:-translate-y-2">
-      <div className="relative aspect-[9/16] overflow-hidden rounded-[1.9rem] bg-black">
+    <div className="group relative rounded-[2rem] bg-[#1b0a03] p-2 ring-1 ring-cream/10">
+      <div className="relative aspect-[9/16] overflow-hidden rounded-[1.5rem] bg-black">
         {playing ? (
           <iframe
             src={`https://www.tiktok.com/player/v1/${video.id}?autoplay=1&music_info=0&description=0&rel=0&native_context_menu=0`}
@@ -36,16 +36,16 @@ export function TikTokPhone({ video }: { video: TikTokVideo }) {
               sizes="(min-width: 768px) 260px, 64vw"
               className="zoom-img h-full w-full object-cover"
             />
-            <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-black/30" />
+            <span className="absolute inset-0 bg-black/35" />
             <span className="absolute left-3.5 right-3.5 top-3.5 flex items-center justify-between text-cream">
-              <span className="flex items-center gap-1.5 rounded-full bg-black/40 px-2.5 py-1 text-[0.6875rem] font-bold backdrop-blur-sm">
+              <span className="flex items-center gap-1.5 rounded bg-black/55 px-2 py-1 text-caption font-bold">
                 <TikTokIcon size={12} /> {video.views} de vues
               </span>
             </span>
-            <span className="absolute left-1/2 top-1/2 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-orange text-brown shadow-lg transition-transform duration-500 group-hover:scale-110">
+            <span className="absolute left-1/2 top-1/2 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-orange text-white transition-transform duration-200 group-hover:scale-105">
               <PlayIcon size={26} className="translate-x-0.5" />
             </span>
-            <span className="absolute inset-x-4 bottom-4 text-[0.9375rem] font-bold leading-snug text-cream">
+            <span className="absolute inset-x-4 bottom-4 text-body font-bold text-cream">
               {video.title}
             </span>
           </button>

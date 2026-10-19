@@ -41,10 +41,10 @@ export function MenuTabs({ tabs }: { tabs: Tab[] }) {
   }, [active]);
 
   return (
-    <div className="sticky top-16 z-30 border-b border-line bg-cream/92 backdrop-blur-xl">
+    <div className="sticky top-16 z-30 border-b border-line bg-cream">
       <div
         ref={barRef}
-        className="no-scrollbar container-site relative flex gap-7 overflow-x-auto md:gap-10"
+        className="no-scrollbar container-site relative flex gap-6 overflow-x-auto md:gap-8"
         role="navigation"
         aria-label="Catégories du menu"
       >
@@ -61,8 +61,8 @@ export function MenuTabs({ tabs }: { tabs: Tab[] }) {
                 setActive(t.id);
               }}
               className={cn(
-                "display relative shrink-0 py-4 text-[1.35rem] transition-colors duration-300 md:text-[1.75rem]",
-                selected ? "text-brown" : "text-brown/65 hover:text-brown",
+                "relative shrink-0 py-4 text-subheading font-bold transition-colors duration-200 md:text-heading-sm",
+                selected ? "text-ink" : "text-ink-soft hover:text-ink",
               )}
             >
               {t.label}

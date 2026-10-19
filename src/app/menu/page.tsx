@@ -75,29 +75,24 @@ const minDelivery = Math.min(...DELIVERY_ZONES.map((z) => z.standard.price));
 export default function MenuPage() {
   return (
     <>
-      <section data-hero className="pb-10 pt-8 md:pb-16 md:pt-14">
+      <section data-hero className="pb-10 pt-10 md:pb-16 md:pt-16">
         <div className="container-site grid gap-10 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
-            <p className="eyebrow flex items-center gap-2 text-brown">
-              <span className="inline-block size-1.5 rounded-full bg-spark" />
-              La carte · {ALL_DISHES.length} plats et boissons
-            </p>
-            <h1 className="display mt-5 text-[3.4rem] text-brown sm:text-[4.4rem] md:text-[6rem]">
-              Le menu <span className="accent text-orange">Chez Chiro</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-muted md:text-lg">
+            <p className="text-small font-bold text-ink-soft">{ALL_DISHES.length} plats, packs et boissons</p>
+            <h1 className="mt-2 text-display text-ink">Le menu Chez Chiro</h1>
+            <p className="mt-5 max-w-xl text-subheading text-ink-soft">
               Touchez « Commander » sur un plat : WhatsApp s&apos;ouvre avec son nom déjà écrit. Les prix sont des
               prix de départ, le total dépend de la viande, du poisson ou de l&apos;accompagnement choisi.
             </p>
           </div>
-          <ul className="grid gap-3 text-[0.9375rem] text-brown sm:grid-cols-3 md:col-span-5 md:grid-cols-1">
-            <li className="flex items-center gap-3 rounded-2xl bg-sand px-4 py-3">
+          <ul className="grid gap-3 text-body font-medium text-ink sm:grid-cols-3 md:col-span-5 md:grid-cols-1">
+            <li className="flex items-center gap-3 rounded-lg bg-surface px-4 py-3">
               <ClockIcon size={20} /> {HOURS.days}, {HOURS.open}
             </li>
-            <li className="flex items-center gap-3 rounded-2xl bg-sand px-4 py-3">
+            <li className="flex items-center gap-3 rounded-lg bg-surface px-4 py-3">
               <TruckIcon size={20} /> Livraison dès {formatFcfa(minDelivery)}
             </li>
-            <li className="flex items-center gap-3 rounded-2xl bg-sand px-4 py-3">
+            <li className="flex items-center gap-3 rounded-lg bg-surface px-4 py-3">
               <CashIcon size={20} /> Paiement à la livraison
             </li>
           </ul>
@@ -108,21 +103,21 @@ export default function MenuPage() {
 
       <div className="container-site pb-16 md:pb-24">
         <section id="pack" aria-labelledby="pack-title" className="scroll-mt-32 pt-10 md:pt-14">
-          <Reveal className="grid gap-6 rounded-[var(--radius-card)] bg-peach p-7 sm:p-10 md:grid-cols-12 md:items-center md:p-12">
+          <Reveal className="grid gap-6 rounded-lg bg-surface p-6 sm:p-10 md:grid-cols-12 md:items-center md:p-12">
             <div className="md:col-span-8">
-              <p className="eyebrow text-brown">Pour les grandes faims</p>
-              <h2 id="pack-title" className="display mt-4 text-[2.8rem] text-brown md:text-[3.8rem]">
-                Pack <span className="accent text-orange-deep">Banger</span>
+              <p className="text-small font-bold text-ink-soft">Pour les grandes faims</p>
+              <h2 id="pack-title" className="mt-2 text-heading text-ink">
+                Pack Banger
               </h2>
-              <p className="mt-4 max-w-2xl text-[1.0625rem] leading-relaxed text-brown/85">{PACK_BANGER.description}</p>
+              <p className="mt-3 max-w-2xl text-body text-ink-soft">{PACK_BANGER.description}</p>
             </div>
             <div className="flex flex-col items-start gap-4 md:col-span-4 md:items-end">
-              <p className="display text-[2.8rem] text-brown">{formatFcfa(PACK_BANGER.price)}</p>
+              <p className="text-heading tabular-nums text-ink">{formatFcfa(PACK_BANGER.price)}</p>
               <a
                 href={dishOrderLink(PACK_BANGER.name, PACK_BANGER.price, true)}
                 target="_blank"
                 rel="noopener"
-                className="btn btn-dark"
+                className="btn btn-secondary"
               >
                 <WhatsAppIcon size={19} /> Commander le pack
               </a>
@@ -137,17 +132,17 @@ export default function MenuPage() {
               key={category.id}
               id={category.id}
               aria-labelledby={`${category.id}-title`}
-              className="scroll-mt-24 border-b border-line py-14 last:border-0 md:py-20"
+              className="scroll-mt-24 border-b border-line py-16 last:border-0 md:py-24"
             >
               <div className="grid gap-8 md:grid-cols-12 md:gap-12">
                 <Reveal className="md:col-span-4">
                   <div className="md:sticky md:top-40">
-                    <h2 id={`${category.id}-title`} className="display text-[2.5rem] text-brown md:text-[3.2rem]">
+                    <h2 id={`${category.id}-title`} className="text-heading text-ink">
                       {category.label}
                     </h2>
-                    <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">{category.intro}</p>
+                    <p className="mt-2 text-body text-ink-soft">{category.intro}</p>
                     {img && (
-                      <div className="group relative mt-6 aspect-[16/10] overflow-hidden rounded-[var(--radius-image)] bg-sand md:aspect-[4/5]">
+                      <div className="group relative mt-6 aspect-[16/10] overflow-hidden rounded-lg bg-surface md:aspect-[4/5]">
                         <Image
                           src={img.src}
                           alt={img.alt}
@@ -173,10 +168,10 @@ export default function MenuPage() {
           );
         })}
 
-        <Reveal className="mt-6 flex flex-col items-start gap-5 rounded-[var(--radius-card)] bg-brown p-7 text-cream sm:p-10 md:flex-row md:items-center md:justify-between">
+        <Reveal className="mt-6 flex flex-col items-start gap-5 rounded-lg bg-brown p-6 text-cream sm:p-10 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="display text-[2.2rem] md:text-[2.8rem]">Vous hésitez&nbsp;?</h2>
-            <p className="mt-2 max-w-lg text-cream/75">
+            <h2 className="text-heading">Vous hésitez&nbsp;?</h2>
+            <p className="mt-2 max-w-lg text-subheading text-cream/75">
               Dites-nous ce qui vous fait envie : un message WhatsApp suffit.
             </p>
           </div>

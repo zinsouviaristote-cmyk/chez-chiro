@@ -44,7 +44,7 @@ export function SiteHeader() {
         className={cn(
           "sticky top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-500",
           scrolled
-            ? "bg-cream/88 shadow-[0_1px_0_0_var(--color-line),0_12px_30px_-24px_rgb(49_20_8/0.5)] backdrop-blur-xl"
+            ? "bg-cream/88 shadow-[0_1px_0_0_var(--color-line)] backdrop-blur-xl"
             : "bg-cream",
         )}
       >
@@ -83,13 +83,13 @@ export function SiteHeader() {
           <div className="flex items-center gap-2">
             <a
               href={callLink}
-              className="btn btn-outline btn-sm hidden md:inline-flex"
+              className="btn btn-pill btn-pill-outline hidden md:inline-flex"
               aria-label={`Appeler le ${PHONES.call.display}`}
             >
               <PhoneIcon size={16} />
               Appeler
             </a>
-            <a href={orderLink()} target="_blank" rel="noopener" className="btn btn-primary btn-sm">
+            <a href={orderLink()} target="_blank" rel="noopener" className="btn btn-primary btn-pill">
               <WhatsAppIcon size={18} />
               Commander
             </a>
@@ -99,7 +99,7 @@ export function SiteHeader() {
                 setMenuMounted(true);
                 setOpen(true);
               }}
-              className="grid size-11 place-items-center rounded-full text-brown transition hover:bg-sand lg:hidden"
+              className="grid size-11 place-items-center rounded-full text-brown transition hover:bg-surface lg:hidden"
               aria-label="Ouvrir le menu"
               aria-expanded={open}
               aria-controls="menu-mobile"

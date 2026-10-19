@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   images: {
     formats: ["image/avif", "image/webp"],
-    qualities: [60, 75],
+    qualities: [50, 60, 75],
     deviceSizes: [390, 640, 720, 828, 1080, 1280, 1600, 1920],
     imageSizes: [96, 140, 180, 260, 320, 420],
   },

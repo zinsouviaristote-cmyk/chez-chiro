@@ -22,24 +22,24 @@ export function WhatsAppIcon(props: IconProps) {
 
 export function PhoneIcon(props: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round" {...base(props)}>
-      <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path d="M6.62 10.79a15.15 15.15 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" />
     </svg>
   );
 }
 
 export function ArrowRightIcon(props: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...base(props)}>
-      <path d="M5 12h14M13 6l6 6-6 6" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path d="M13.06 4.94a1.5 1.5 0 0 1 2.12 0l6 6a1.5 1.5 0 0 1 0 2.12l-6 6a1.5 1.5 0 0 1-2.12-2.12l3.44-3.44H4a1.5 1.5 0 0 1 0-3h12.5l-3.44-3.44a1.5 1.5 0 0 1 0-2.12Z" />
     </svg>
   );
 }
 
 export function ArrowUpRightIcon(props: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...base(props)}>
-      <path d="M7 17 17 7M8 7h9v9" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path d="M8 5.5A1.5 1.5 0 0 1 9.5 4h9A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-3 0V9.12l-9.94 9.94a1.5 1.5 0 0 1-2.12-2.12L14.88 7H9.5A1.5 1.5 0 0 1 8 5.5Z" />
     </svg>
   );
 }
@@ -54,38 +54,32 @@ export function StarIcon(props: IconProps) {
 
 export function MapPinIcon(props: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round" {...base(props)}>
-      <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z" />
-      <circle cx="12" cy="9.5" r="2.5" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path fillRule="evenodd" clipRule="evenodd" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z" />
     </svg>
   );
 }
 
 export function ClockIcon(props: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round" {...base(props)}>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3 2" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path fillRule="evenodd" clipRule="evenodd" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 5a1 1 0 1 0-2 0v5.5c0 .35.18.67.48.85l3.5 2.1a1 1 0 1 0 1.03-1.71L13 11.93V7Z" />
     </svg>
   );
 }
 
 export function TruckIcon(props: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round" {...base(props)}>
-      <path d="M3 6h11v10H3zM14 9h4l3 3v4h-7" />
-      <circle cx="7" cy="17.5" r="1.8" />
-      <circle cx="17" cy="17.5" r="1.8" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path fillRule="evenodd" clipRule="evenodd" d="M3 5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h.18a3 3 0 0 0 5.64 0h6.36a3 3 0 0 0 5.64 0H22a1 1 0 0 0 1-1v-4.38a1 1 0 0 0-.2-.6l-2.7-3.62A1 1 0 0 0 19.3 8H16V7a2 2 0 0 0-2-2H3Zm13 5v3h5l-2.24-3H16ZM6 16a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm12 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" />
     </svg>
   );
 }
 
 export function CashIcon(props: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round" {...base(props)}>
-      <rect x="2.5" y="6" width="19" height="12" rx="2" />
-      <circle cx="12" cy="12" r="2.6" />
-      <path d="M6 9.5v5M18 9.5v5" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path fillRule="evenodd" clipRule="evenodd" d="M3 5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H3Zm9 10.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM5 9a1 1 0 0 0-1 1v4a1 1 0 1 0 2 0v-4a1 1 0 0 0-1-1Zm14 0a1 1 0 0 0-1 1v4a1 1 0 1 0 2 0v-4a1 1 0 0 0-1-1Z" />
     </svg>
   );
 }
@@ -132,10 +126,8 @@ export function FacebookIcon(props: IconProps) {
 
 export function InstagramIcon(props: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} {...base(props)}>
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path fillRule="evenodd" clipRule="evenodd" d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm4.2 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm5.25-3.25a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Z" />
     </svg>
   );
 }
@@ -161,25 +153,24 @@ export function SparkIcon(props: IconProps) {
 
 export function TrophyIcon(props: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round" {...base(props)}>
-      <path d="M8 4h8v5a4 4 0 0 1-8 0V4ZM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8.5 20h7M10 17h4" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path fillRule="evenodd" clipRule="evenodd" d="M7 3a1 1 0 0 0-1 1v1H4a1 1 0 0 0-1 1v1.5a4.5 4.5 0 0 0 3.6 4.41A6 6 0 0 0 11 15.92V19H8a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2h-3v-3.08a6 6 0 0 0 4.4-4.01A4.5 4.5 0 0 0 21 7.5V6a1 1 0 0 0-1-1h-2V4a1 1 0 0 0-1-1H7ZM6 7v2.82A2.5 2.5 0 0 1 5 7.5V7h1Zm12 0h1v.5a2.5 2.5 0 0 1-1 2.32V7Z" />
     </svg>
   );
 }
 
 export function ChatIcon(props: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round" {...base(props)}>
-      <path d="M4 5h16v11H9l-5 4V5Z" />
-      <path d="M8 9.5h8M8 12.5h5" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path fillRule="evenodd" clipRule="evenodd" d="M4 3a2 2 0 0 0-2 2v15.5a.5.5 0 0 0 .82.38L7.4 17H20a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4Zm4 6a1 1 0 0 0 0 2h8a1 1 0 1 0 0-2H8Zm0 3.5a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2H8Z" />
     </svg>
   );
 }
 
 export function BowlIcon(props: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round" {...base(props)}>
-      <path d="M3 12h18a9 9 0 0 1-18 0ZM9 7c0-1.5 1-1.5 1-3M13 7c0-1.5 1-1.5 1-3" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path d="M9.5 3a1 1 0 0 1 1 1c0 .8-.3 1.3-.5 1.64-.17.29-.25.43-.25.86a1 1 0 1 1-2 0c0-.97.3-1.47.52-1.86.15-.25.23-.39.23-.64a1 1 0 0 1 1-1Zm4 0a1 1 0 0 1 1 1c0 .8-.3 1.3-.5 1.64-.17.29-.25.43-.25.86a1 1 0 1 1-2 0c0-.97.3-1.47.52-1.86.15-.25.23-.39.23-.64a1 1 0 0 1 1-1ZM3 10a1 1 0 0 0-1 1 10 10 0 0 0 20 0 1 1 0 0 0-1-1H3Z" />
     </svg>
   );
 }

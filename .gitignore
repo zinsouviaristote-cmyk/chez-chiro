@@ -1,0 +1,5 @@
+.next/
+.playwright-mcp/
+.vercel
+*.tsbuildinfo
+.DS_Store

@@ -26,8 +26,8 @@ export function Countdown() {
   if (days === null || days < 0) return null;
 
   return (
-    <p className="mt-7 inline-flex items-center gap-3 rounded-full border border-cream/20 py-2 pl-2 pr-5 text-sm text-cream/85">
-      <span className="display grid h-9 min-w-9 place-items-center rounded-full bg-cream px-2.5 text-lg text-brown">
+    <p className="mt-6 inline-flex items-center gap-3 rounded-lg border border-cream/20 py-2 pl-2 pr-4 text-small text-cream/85">
+      <span className="grid h-9 min-w-9 place-items-center rounded bg-cream px-2.5 text-body font-bold tabular-nums text-brown">
         {days === 0 ? "J" : `J-${days}`}
       </span>
       {days === 0 ? "C'est maintenant !" : `Plus que ${days} jour${days > 1 ? "s" : ""}`}

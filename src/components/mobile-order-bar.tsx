@@ -33,20 +33,16 @@ export function MobileOrderBar() {
       inert={!visible}
       aria-hidden={!visible}
       className={cn(
-        "pb-safe fixed inset-x-0 bottom-0 z-40 px-3 pt-3 transition-[transform,opacity] duration-500 ease-[var(--ease-out-soft)] md:hidden",
-        visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-[110%] opacity-0",
+        "pb-safe fixed inset-x-0 bottom-0 z-40 border-t border-cream/10 bg-brown px-4 pt-3 transition-[transform,opacity] duration-300 ease-[var(--ease-out-soft)] md:hidden",
+        visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-full opacity-0",
       )}
     >
-      <div className="flex gap-2 rounded-full bg-brown/95 p-1.5 shadow-[0_18px_40px_-16px_rgb(49_20_8/0.7)] backdrop-blur-md">
-        <a href={orderLink()} target="_blank" rel="noopener" className="btn btn-primary flex-1 py-3.5">
+      <div className="flex gap-2">
+        <a href={orderLink()} target="_blank" rel="noopener" className="btn btn-primary flex-1 px-3">
           <WhatsAppIcon size={20} />
           Commander sur WhatsApp
         </a>
-        <a
-          href={callLink}
-          className="btn grid size-[3.1rem] shrink-0 place-items-center bg-cream/10 p-0 text-cream hover:bg-cream/20"
-          aria-label="Appeler Chez Chiro"
-        >
+        <a href={callLink} className="btn btn-outline-light w-14 shrink-0 px-0" aria-label="Appeler Chez Chiro">
           <PhoneIcon size={20} />
         </a>
       </div>

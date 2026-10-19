@@ -1,47 +1,58 @@
 @import "tailwindcss";
 
 /*
-  Chez Chiro — design tokens
-  Brand colours mapped onto the reference roles:
-  orange  #E7641B  → primary action (text on it is brown, never white)
-  brown   #311408  → deep brand: dark bands, footer, accents
-  ink     #272928  → text
-  cream   #FDFBF1  → canvas
-  sand / peach     → soft alternating bands
-  spark   #F2730D  → tiny highlights only (dots, stars), never text on cream
+  Chez Chiro — design tokens (see reference-design.md)
+  Uber's structure and type logic, Chez Chiro's colours:
+  orange   #E7641B → primary action (white bold text, 19px min)
+  brown    #311408 → dark surfaces: bands, footer, mobile bar, hero overlay
+  ink      #272928 → text
+  cream    #FDFBF1 → canvas
+  surface  #F5F1E3 → the one soft surface (cards, alternating bands)
+  spark    #F2730D → small highlights only (stars, dots)
+  One family: Figtree. No serif, no italics, no shadows, no gradients.
 */
 @theme {
   --color-orange: #e7641b;
   --color-orange-deep: #cf5310;
   --color-brown: #311408;
-  --color-brown-soft: #4a2412;
   --color-ink: #272928;
-  --color-muted: #66574d;
+  --color-ink-soft: #5c5a55;
   --color-cream: #fdfbf1;
-  --color-sand: #f3e8d4;
-  --color-peach: #fbe1cf;
+  --color-surface: #f5f1e3;
+  --color-line: #e3ddcd;
   --color-spark: #f2730d;
-  --color-line: #e6dccb;
 
-  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
 
-  --radius-card: 1.5rem;
-  --radius-image: 1.25rem;
+  /* Type scale (mobile → desktop) */
+  --text-display: clamp(2.5rem, 1.6rem + 3.7vw, 4.5rem);
+  --text-display--line-height: 1.08;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 700;
 
-  --shadow-soft: 3px 3px 32px -10px rgb(49 20 8 / 0.35);
-  --shadow-lift: 0 24px 48px -24px rgb(49 20 8 / 0.45);
+  --text-heading: clamp(1.875rem, 1.5rem + 1vw, 2.25rem);
+  --text-heading--line-height: 1.22;
+  --text-heading--letter-spacing: -0.01em;
+  --text-heading--font-weight: 700;
+
+  --text-heading-sm: 1.5rem;
+  --text-heading-sm--line-height: 1.33;
+  --text-heading-sm--font-weight: 700;
+
+  --text-subheading: 1.125rem;
+  --text-subheading--line-height: 1.33;
+  --text-subheading--font-weight: 500;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.5;
+
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.67;
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
-
-  --animate-spin-slow: spin 22s linear infinite;
-}
-
-@keyframes marquee {
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
 }
 
 @layer base {
@@ -57,21 +68,30 @@
     font-family: var(--font-sans);
     font-size: 1rem;
     line-height: 1.5;
-    letter-spacing: 0.01em;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     overflow-x: clip;
   }
 
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
   ::selection {
     background: var(--color-orange);
-    color: var(--color-brown);
+    color: #fff;
   }
 
   :focus-visible {
     outline: 2px solid var(--color-orange);
     outline-offset: 3px;
-    border-radius: 6px;
+    border-radius: 4px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -89,139 +109,165 @@
 }
 
 @layer components {
-  /* Display type: calm weight, tight leading — the reference's voice */
-  .display {
-    font-family: var(--font-display);
-    font-weight: 500;
-    line-height: 0.92;
-    letter-spacing: -0.025em;
-    font-optical-sizing: auto;
-    text-wrap: balance;
-  }
-
-  .accent {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-  }
-
-  .eyebrow {
-    font-family: var(--font-sans);
-    font-size: 0.8125rem;
-    font-weight: 700;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-  }
-
   .container-site {
     width: 100%;
-    max-width: 76rem;
+    max-width: calc(1200px + 4rem);
     margin-inline: auto;
-    padding-inline: 1.25rem;
+    padding-inline: 1rem;
   }
-
+  @media (min-width: 640px) {
+    .container-site {
+      padding-inline: 1.5rem;
+    }
+  }
   @media (min-width: 768px) {
     .container-site {
       padding-inline: 2rem;
     }
   }
 
-  /* Pill buttons */
+  /* Section rhythm: 64px mobile, 96px desktop */
+  .section {
+    padding-block: 4rem;
+  }
+  @media (min-width: 768px) {
+    .section {
+      padding-block: 6rem;
+    }
+  }
+
+  /* Very short uppercase labels only (badges, table headers, footer columns) */
+  .eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  /*
+    Buttons: 8px radius, 56px tall, bold. Hover = a layer that fades in
+    (opacity only), so the colour change never animates paint.
+  */
   .btn {
+    position: relative;
+    isolation: isolate;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
-    border-radius: 9999px;
-    padding: 0.95rem 1.5rem;
-    font-weight: 700;
+    gap: 0.625rem;
+    width: 100%;
+    min-height: 3.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
     font-size: 1rem;
-    letter-spacing: 0.015em;
-    line-height: 1;
+    font-weight: 700;
+    line-height: 1.25;
     white-space: nowrap;
-    transition:
-      transform 0.35s var(--ease-out-soft),
-      background-color 0.25s ease,
-      color 0.25s ease,
-      box-shadow 0.35s var(--ease-out-soft),
-      border-color 0.25s ease;
-    will-change: transform;
+    transition: transform 0.2s var(--ease-out-soft);
   }
-  .btn:hover {
-    transform: translateY(-2px);
+  .btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--btn-hover, rgb(49 20 8 / 0.14));
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .btn:hover::before {
+    opacity: 1;
   }
   .btn:active {
-    transform: translateY(0) scale(0.98);
+    transform: scale(0.98);
+  }
+  @media (min-width: 640px) {
+    .btn {
+      width: auto;
+    }
   }
 
+  /* White on #E7641B is 3.4:1: labels must be large text (≥ 18.66px bold). */
   .btn-primary {
     background: var(--color-orange);
-    color: var(--color-brown);
-    box-shadow: 0 10px 24px -12px rgb(231 100 27 / 0.9);
-  }
-  .btn-primary:hover {
-    background: #f07a35;
-    box-shadow: 0 16px 32px -14px rgb(231 100 27 / 0.95);
+    color: #fff;
+    font-size: 1.1875rem;
+    --btn-hover: rgb(49 20 8 / 0.14);
   }
 
-  .btn-dark {
+  .btn-secondary {
     background: var(--color-brown);
-    color: var(--color-cream);
-  }
-  .btn-dark:hover {
-    background: var(--color-brown-soft);
+    color: #fff;
+    --btn-hover: rgb(253 251 241 / 0.1);
   }
 
   .btn-outline {
-    border: 2px solid var(--color-brown);
-    color: var(--color-brown);
-    padding: calc(0.95rem - 2px) calc(1.5rem - 2px);
-  }
-  .btn-outline:hover {
-    background: var(--color-brown);
-    color: var(--color-cream);
+    border: 1px solid var(--color-ink);
+    color: var(--color-ink);
+    --btn-hover: var(--color-surface);
   }
 
   .btn-outline-light {
-    border: 2px solid rgb(253 251 241 / 0.5);
-    color: var(--color-cream);
-    padding: calc(0.95rem - 2px) calc(1.5rem - 2px);
-  }
-  .btn-outline-light:hover {
-    border-color: var(--color-cream);
-    background: rgb(253 251 241 / 0.08);
+    border: 1px solid rgb(253 251 241 / 0.6);
+    color: #fff;
+    --btn-hover: rgb(253 251 241 / 0.12);
   }
 
   .btn-sm {
-    padding: 0.7rem 1.1rem;
-    font-size: 0.875rem;
-    gap: 0.45rem;
+    width: auto;
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9375rem;
+    gap: 0.5rem;
   }
 
-  /* Ghost text link with arrow */
+  /* Header CTAs: the only pill buttons on the site (layout kept from V1) */
+  .btn-pill {
+    width: auto;
+    min-height: 0;
+    border-radius: 9999px;
+    padding: 0.7rem 1.1rem;
+    font-size: 0.875rem;
+    line-height: 1;
+    gap: 0.45rem;
+    letter-spacing: 0.015em;
+  }
+  .btn-pill.btn-pill-outline {
+    border: 2px solid var(--color-brown);
+    color: var(--color-brown);
+    padding: calc(0.7rem - 2px) calc(1.1rem - 2px);
+    transition:
+      transform 0.2s var(--ease-out-soft),
+      color 0.2s ease;
+    --btn-hover: var(--color-brown);
+  }
+  .btn-pill.btn-pill-outline:hover {
+    color: var(--color-cream);
+  }
+
+  /* Text link with arrow */
   .link-arrow {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.5rem;
     font-weight: 700;
-    color: var(--color-brown);
+    color: var(--color-ink);
     background-image: linear-gradient(currentColor, currentColor);
     background-size: 0% 2px;
     background-position: 0 100%;
     background-repeat: no-repeat;
     padding-bottom: 2px;
-    transition: background-size 0.4s var(--ease-out-soft);
+    transition: background-size 0.25s var(--ease-out-soft);
   }
   .link-arrow:hover {
     background-size: 100% 2px;
   }
   .link-arrow .arrow {
-    transition: transform 0.4s var(--ease-out-soft);
+    transition: transform 0.25s var(--ease-out-soft);
   }
   .link-arrow:hover .arrow,
   .group:hover .link-arrow .arrow {
-    transform: translateX(4px);
+    transform: translateX(3px);
   }
 
   .link-underline {
@@ -229,18 +275,18 @@
     background-size: 0% 1px;
     background-position: 0 100%;
     background-repeat: no-repeat;
-    transition: background-size 0.4s var(--ease-out-soft);
+    transition: background-size 0.25s var(--ease-out-soft);
   }
   .link-underline:hover {
     background-size: 100% 1px;
   }
 
-  /* Image zoom on hover (cards) */
+  /* Image zoom on card hover */
   .zoom-img {
-    transition: transform 0.9s var(--ease-out-soft);
+    transition: transform 0.25s var(--ease-out-soft);
   }
   .group:hover .zoom-img {
-    transform: scale(1.06);
+    transform: scale(1.03);
   }
 
   .no-scrollbar {
@@ -251,14 +297,60 @@
   }
 }
 
+/*
+  Hero — CSS only, so the text paints with the first frame (no JS state):
+  words rise in one after another, the rest follows, the photo drifts slowly.
+*/
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.45em, 0);
+  }
+}
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+}
+@keyframes ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.07) translate3d(-1.2%, -1%, 0);
+  }
+}
+.hero-word {
+  display: inline-block;
+  animation: hero-rise 0.6s var(--ease-out-soft) both;
+  animation-delay: calc(var(--i, 0) * 70ms + 80ms);
+}
+.hero-fade {
+  animation: hero-fade 0.6s var(--ease-out-soft) both;
+  animation-delay: var(--d, 0.35s);
+}
+.ken-burns {
+  transform-origin: 55% 45%;
+  animation: ken-burns 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-word,
+  .hero-fade,
+  .ken-burns {
+    animation: none;
+  }
+}
+
 /* Scroll reveals (state set by <RevealObserver />) */
 [data-reveal],
 [data-stagger] > [data-item] {
   opacity: 0;
-  transform: translate3d(0, 26px, 0);
+  transform: translate3d(0, 20px, 0);
   transition:
-    opacity 0.9s var(--ease-out-soft),
-    transform 0.9s var(--ease-out-soft);
+    opacity 0.6s var(--ease-out-soft),
+    transform 0.6s var(--ease-out-soft);
   transition-delay: var(--reveal-delay, 0s);
 }
 [data-reveal][data-shown],
@@ -292,16 +384,7 @@
   }
 }
 .panel-in {
-  animation: panel-in 0.45s var(--ease-out-soft) both;
-}
-
-/* Ticker */
-.marquee {
-  animation: marquee 70s linear infinite;
-  will-change: transform;
-}
-.marquee:hover {
-  animation-play-state: paused;
+  animation: panel-in 0.4s var(--ease-out-soft) both;
 }
 
 /* Safe area for the mobile order bar */

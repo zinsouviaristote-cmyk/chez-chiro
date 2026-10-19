@@ -15,14 +15,13 @@ export function MenuPreview() {
   const category = MENU.find((c) => c.id === active) ?? MENU[0];
 
   return (
-    <section id="menu" aria-labelledby="menu-title" className="bg-sand py-20 md:py-28">
+    <section id="menu" aria-labelledby="menu-title" className="section bg-surface">
       <div className="container-site">
         <Reveal className="max-w-3xl">
-          <p className="eyebrow text-brown">La carte</p>
-          <h2 id="menu-title" className="display mt-4 text-[2.6rem] text-brown sm:text-[3.2rem] md:text-[4.25rem]">
-            Choisissez, on <span className="accent text-orange-deep">s&apos;occupe</span> du reste.
+          <h2 id="menu-title" className="text-heading text-ink">
+            Choisissez, on s&apos;occupe du reste.
           </h2>
-          <p className="mt-5 max-w-2xl text-[1.0625rem] leading-relaxed text-muted md:text-lg">
+          <p className="mt-4 max-w-2xl text-subheading text-ink-soft">
             Touchez « Commander » : WhatsApp s&apos;ouvre avec le nom du plat déjà écrit. Les prix indiqués sont
             les prix de départ, le total dépend de vos choix.
           </p>
@@ -32,7 +31,7 @@ export function MenuPreview() {
           ref={tabsRef}
           role="tablist"
           aria-label="Catégories du menu"
-          className="no-scrollbar relative -mx-5 mt-10 flex gap-7 overflow-x-auto px-5 md:mx-0 md:mt-14 md:gap-10 md:px-0"
+          className="no-scrollbar relative -mx-4 mt-8 flex gap-6 overflow-x-auto px-4 sm:-mx-6 sm:px-6 md:mx-0 md:mt-12 md:gap-8 md:px-0"
         >
           {MENU.map((c) => {
             const selected = c.id === active;
@@ -46,8 +45,8 @@ export function MenuPreview() {
                 aria-controls="menu-panel"
                 onClick={() => setActive(c.id)}
                 className={cn(
-                  "display relative shrink-0 pb-4 text-[1.65rem] transition-colors duration-300 md:text-[2.1rem] lg:text-[2.25rem]",
-                  selected ? "text-brown" : "text-brown/65 hover:text-brown",
+                  "relative shrink-0 pb-4 text-heading-sm transition-colors duration-200",
+                  selected ? "text-ink" : "text-ink-soft hover:text-ink",
                 )}
               >
                 {c.tab}
@@ -57,7 +56,7 @@ export function MenuPreview() {
           <TabDot container={tabsRef} activeSelector={`#tab-${active}`} className="bottom-0.5" />
         </div>
 
-        <div className="mt-6 rounded-[var(--radius-card)] bg-cream/55 p-1 sm:p-6 md:mt-8 md:p-8">
+        <div className="mt-4 rounded-lg bg-cream p-1 sm:p-6 md:mt-6 md:p-8">
           <div
             key={category.id}
             id="menu-panel"
@@ -65,10 +64,10 @@ export function MenuPreview() {
             aria-labelledby={`tab-${category.id}`}
             className="panel-in"
           >
-              <p className="px-3 pb-2 pt-1 text-[0.9375rem] text-muted sm:px-3">{category.intro}</p>
+              <p className="px-3 pb-2 pt-3 text-small text-ink-soft sm:pt-1">{category.intro}</p>
               <div className="grid px-3 md:grid-cols-2 md:gap-x-12">
                 {category.dishes.slice(0, 6).map((dish) => (
-                  <div key={dish.id} className="border-b border-brown/10 last:border-0 md:[&:nth-last-child(-n+2)]:border-0">
+                  <div key={dish.id} className="border-b border-line last:border-0 md:[&:nth-last-child(-n+2)]:border-0">
                     <DishRow dish={dish} />
                   </div>
                 ))}
@@ -77,10 +76,10 @@ export function MenuPreview() {
         </div>
 
         <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[0.9375rem] text-muted">
+          <p className="text-small text-ink-soft">
             {ALL_DISHES.length} plats, packs et boissons. Paiement à la livraison.
           </p>
-          <Link href="/menu" className="btn btn-dark">
+          <Link href="/menu" className="btn btn-secondary">
             Voir toute la carte <ArrowRightIcon size={18} />
           </Link>
         </div>

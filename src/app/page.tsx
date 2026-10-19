@@ -1,6 +1,4 @@
 import { Hero } from "@/components/home/hero";
-import { Ticker } from "@/components/home/ticker";
-import { Proof } from "@/components/home/proof";
 import { Signatures } from "@/components/home/signatures";
 import { MenuPreview } from "@/components/home/menu-preview";
 import { HowToOrder } from "@/components/home/how-to-order";
@@ -15,8 +13,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Ticker />
-      <Proof />
       <Signatures />
       <MenuPreview />
       <HowToOrder />

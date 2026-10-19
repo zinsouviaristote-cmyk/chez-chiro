@@ -59,17 +59,10 @@ const orderName = (name: string) =>
 
 export function Signatures() {
   return (
-    <section aria-labelledby="signatures-title" className="pb-20 md:pb-28">
+    <section aria-labelledby="signatures-title" className="section">
       <div className="container-site">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <SectionHeading
-            eyebrow="Les incontournables"
-            title={
-              <span id="signatures-title">
-                Les plats qu&apos;on <span className="accent text-orange">recommande</span> les yeux fermés.
-              </span>
-            }
-          />
+          <SectionHeading id="signatures-title" title="Les plats qu'on recommande les yeux fermés." />
           <Reveal>
             <Link href="/menu" className="link-arrow shrink-0">
               Toute la carte <ArrowRightIcon size={18} className="arrow" />
@@ -79,7 +72,7 @@ export function Signatures() {
 
         <Stagger
           as="ul"
-          className="no-scrollbar -mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 md:mx-0 md:mt-14 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:px-0"
+          className="no-scrollbar -mx-4 mt-8 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:scroll-px-6 sm:px-6 md:mx-0 md:mt-12 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:px-0"
         >
           {CARDS.map((card) => (
             <StaggerItem as="li" key={card.name} className="w-[78%] shrink-0 snap-start sm:w-[45%] md:w-auto">
@@ -89,21 +82,22 @@ export function Signatures() {
                 rel="noopener"
                 className="group block"
               >
-                <div className="relative aspect-square overflow-hidden rounded-[var(--radius-image)] bg-sand">
+                <div className="relative aspect-square overflow-hidden rounded-lg bg-surface">
                   <Image
                     src={card.image}
                     alt={card.alt}
                     sizes="(min-width: 768px) 25vw, 78vw"
+                    quality={60}
                     className="zoom-img h-full w-full object-cover"
                     style={card.position ? { objectPosition: card.position } : undefined}
                   />
-                  <span className="absolute left-3 top-3 rounded-full bg-orange px-3 py-1.5 text-[0.75rem] font-bold tracking-[0.03em] text-brown">
+                  <span className="absolute left-3 top-3 rounded bg-brown px-2 py-1 text-caption font-bold text-cream">
                     {card.single ? formatFcfa(card.price) : `dès ${formatFcfa(card.price)}`}
                   </span>
                 </div>
-                <h3 className="mt-5 text-xl font-bold leading-tight text-brown">{card.name}</h3>
-                <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted">{card.description}</p>
-                <span className="link-arrow mt-4 text-[0.9375rem]">
+                <h3 className="mt-4 text-heading-sm text-ink">{card.name}</h3>
+                <p className="mt-1 text-small text-ink-soft">{card.description}</p>
+                <span className="link-arrow mt-3">
                   Commander <ArrowRightIcon size={16} className="arrow" />
                 </span>
               </a>
@@ -113,22 +107,16 @@ export function Signatures() {
 
         <div className="mt-12 grid gap-4 md:mt-16 md:grid-cols-12 md:gap-6">
           {/* Sauce Gbota Royal — no clean photo yet, so typography carries it */}
-          <Reveal className="relative overflow-hidden rounded-[var(--radius-card)] bg-brown p-7 text-cream sm:p-10 md:col-span-7 md:p-12">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -bottom-40 -right-40 hidden size-80 md:block rounded-full border-[3px] border-orange/50 md:-bottom-48 md:-right-36 md:size-[26rem]"
-            />
-            <p className="eyebrow text-orange">La signature de la maison</p>
-            <h3 className="display mt-5 text-[2.9rem] sm:text-[3.6rem] md:text-[4.4rem]">
-              Sauce Gbota <span className="accent text-orange">Royal</span>
-            </h3>
-            <p className="mt-3 text-lg text-cream/80">La tête de mouton, avec akassa ou piron.</p>
+          <Reveal className="rounded-lg bg-brown p-6 text-cream sm:p-10 md:col-span-7 md:p-12">
+            <p className="text-small font-bold text-orange">La signature de la maison</p>
+            <h3 className="mt-2 text-heading">Sauce Gbota Royal</h3>
+            <p className="mt-2 text-subheading text-cream/80">La tête de mouton, avec akassa ou piron.</p>
 
             <figure className="mt-8 max-w-lg border-l-2 border-orange pl-5">
-              <blockquote className="accent text-[1.45rem] leading-snug text-cream md:text-[1.7rem]">
+              <blockquote className="text-subheading text-cream">
                 « Trop top. Livraison très rapide, livreur courtois, repas très esquis. C&apos;était de la sauce gbota. […] »
               </blockquote>
-              <figcaption className="mt-3 flex items-center gap-2 text-sm text-cream/70">
+              <figcaption className="mt-3 flex items-center gap-2 text-small text-cream/70">
                 <span className="flex text-spark" role="img" aria-label="5 étoiles sur 5">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <StarIcon key={i} size={13} />
@@ -147,18 +135,16 @@ export function Signatures() {
               >
                 <WhatsAppIcon size={19} /> Commander la gbota
               </a>
-              <p className="text-sm text-cream/75">
-                à partir de <strong className="text-base text-cream">{formatFcfa(5000)}</strong>
+              <p className="text-small text-cream/75">
+                à partir de <strong className="text-body text-cream">{formatFcfa(5000)}</strong>
               </p>
             </div>
           </Reveal>
 
-          <Reveal delay={0.1} className="flex flex-col rounded-[var(--radius-card)] bg-peach p-7 sm:p-10 md:col-span-5 md:p-12">
-            <p className="eyebrow text-brown">Pour les grandes faims</p>
-            <h3 className="display mt-5 text-[2.9rem] text-brown sm:text-[3.6rem]">
-              Pack <span className="accent text-orange-deep">Banger</span>
-            </h3>
-            <ul className="mt-6 space-y-2.5 text-[0.9375rem] text-brown">
+          <Reveal delay={0.1} className="flex flex-col rounded-lg bg-surface p-6 sm:p-10 md:col-span-5 md:p-12">
+            <p className="text-small font-bold text-ink-soft">Pour les grandes faims</p>
+            <h3 className="mt-2 text-heading text-ink">Pack Banger</h3>
+            <ul className="mt-6 space-y-2.5 text-body text-ink">
               {[
                 "Riz, hors-d'œuvre ou frites",
                 "Poulet ou lapin braisé",
@@ -174,12 +160,12 @@ export function Signatures() {
               ))}
             </ul>
             <div className="mt-auto flex flex-wrap items-center justify-between gap-4 pt-9">
-              <p className="display text-[2.4rem] text-brown">{formatFcfa(PACK_BANGER.price)}</p>
+              <p className="text-heading-sm tabular-nums text-ink">{formatFcfa(PACK_BANGER.price)}</p>
               <a
                 href={dishOrderLink(PACK_BANGER.name, PACK_BANGER.price, true)}
                 target="_blank"
                 rel="noopener"
-                className="btn btn-dark"
+                className="btn btn-secondary"
               >
                 <WhatsAppIcon size={19} /> Commander le pack
               </a>

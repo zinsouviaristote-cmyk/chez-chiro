@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Sans, Instrument_Serif } from "next/font/google";
-import localFont from "next/font/local";
+import { Figtree } from "next/font/google";
 import "./globals.css";
 import { AnnouncementBar } from "@/components/announcement-bar";
 import { SiteHeader } from "@/components/site-header";
@@ -10,29 +9,11 @@ import { JsonLd } from "@/components/json-ld";
 import { RevealObserver } from "@/components/motion/reveal-observer";
 import { BRAND, EMAIL, LOCATION, PHONES, SITE_URL, SOCIALS } from "@/lib/site";
 
-// Bricolage Grotesque (Google Fonts, OFL), self-hosted through next/font/local:
-// the single display instance we use (96pt optical size, weight 500, latin)
-// weighs 22 KB instead of 77 KB for the full variable font.
-const display = localFont({
-  src: "../assets/fonts/bricolage-grotesque-96pt-500-latin.woff2",
-  weight: "500",
-  style: "normal",
-  variable: "--font-bricolage",
-  display: "swap",
-  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
-});
-
-const sans = Instrument_Sans({
+// One family for everything: Figtree (OFL), the closest free match to
+// Uber Move / Uber Move Text. One variable file (latin) covers 400, 500 and 700.
+const figtree = Figtree({
   subsets: ["latin"],
-  variable: "--font-instrument-sans",
-  display: "swap",
-});
-
-const serif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["italic"],
-  variable: "--font-instrument-serif",
+  variable: "--font-figtree",
   display: "swap",
 });
 
@@ -123,14 +104,14 @@ const restaurantLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${display.variable} ${sans.variable} ${serif.variable}`}>
+    <html lang="fr" className={figtree.variable}>
       <body className="min-h-dvh">
         <noscript>
           <style>{`[data-reveal],[data-item]{opacity:1!important;transform:none!important}`}</style>
         </noscript>
         <a
           href="#contenu"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-brown focus:px-5 focus:py-3 focus:text-cream"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-brown focus:px-5 focus:py-3 focus:text-cream"
         >
           Aller au contenu
         </a>
