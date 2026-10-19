@@ -109,7 +109,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-dvh">
         <IconSprite />
         <noscript>
-          <style>{`[data-reveal],[data-item]{opacity:1!important;transform:none!important}`}</style>
+          <style>{`[data-reveal],[data-group]>*,[data-item]{opacity:1!important;transform:none!important}`}</style>
         </noscript>
         <a
           href="#contenu"

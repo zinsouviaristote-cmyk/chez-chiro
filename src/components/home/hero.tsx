@@ -8,10 +8,10 @@ import { GOOGLE, SOCIALS } from "@/lib/site";
 import { orderLink } from "@/lib/whatsapp";
 import { cn, formatCompact } from "@/lib/utils";
 import { FacebookIcon, StarIcon, TikTokIcon, TrophyIcon, WhatsAppIcon } from "../icons";
-import { HeroDishLoop } from "./hero-dish-loop";
+import { HeroWordLoop } from "./hero-word-loop";
 
-// Real dishes from the menu only. The first one is the dish in the photo.
-const DISHES = ["Poulet bicyclette braisé", "Sauce gbota", "Wassa-wassa", "Attiéké"];
+// The moments Chez Chiro cooks for. Never a dish name: the photo shows one dish.
+const MOMENTS = ["déjeuner", "dîner", "repas de famille", "repas d'équipe"];
 
 const ALT = "Poulet bicyclette braisé Chez Chiro, garni de tomates, d'oignons et de piment vert";
 
@@ -37,7 +37,7 @@ const word = (i: number) => ({ "--i": i }) as CSSProperties;
 export function Hero() {
   // Art direction: a landscape crop from 768px, a portrait crop below.
   // Both are preloaded with a media query, so each device fetches one file.
-  // Quality 50 on mobile: the photo sits under a 55% brown overlay.
+  // Quality 50 on mobile: the photo sits under a dark brown overlay.
   const common = { alt: ALT, loading: "eager", fetchPriority: "high", sizes: "100vw" } as const;
   const {
     props: { srcSet: desktopSrcSet, src: desktopSrc },
@@ -74,47 +74,60 @@ export function Hero() {
             <img {...img} srcSet={mobileSrcSet} alt={ALT} className="h-full w-full object-cover" />
           </picture>
         </div>
-        <div aria-hidden className="absolute inset-0 bg-brown/55 md:bg-brown/50" />
+        {/* Dark enough for centred text over the busiest part of the photo (temporary photo). */}
+        <div aria-hidden className="absolute inset-0 bg-brown/70" />
       </div>
 
-      <div className="container-site flex flex-1 flex-col justify-end pb-10 pt-16 md:pb-16 md:pt-24">
-        <div className="max-w-[50rem]">
-          <h1 id="hero-title" className="text-display">
-            <span className="sr-only">
-              Poulet bicyclette braisé, sauce gbota, wassa-wassa ou attiéké à votre porte.
-            </span>
-            <span aria-hidden>
-              <span className="hero-word w-full" style={word(0)}>
-                <HeroDishLoop dishes={DISHES} />
+      <div className="container-site flex flex-1 flex-col items-center justify-center pb-12 pt-14 text-center md:pb-16 md:pt-20">
+        <h1 id="hero-title" className="text-display">
+          <span className="sr-only">
+            Votre déjeuner, votre dîner, votre repas de famille ou votre repas d&apos;équipe, signé Chez Chiro.
+          </span>
+          <span aria-hidden className="block">
+            <span className="block">
+              <span className="hero-word" style={word(0)}>
+                Votre
               </span>
-              {["à", "votre", "porte."].map((w, i) => (
+            </span>
+            <span className="block">
+              <span className="hero-word w-full" style={word(1)}>
+                <HeroWordLoop words={MOMENTS} />
+              </span>
+            </span>
+            <span className="block">
+              {["signé", "Chez", "Chiro."].map((w, i) => (
                 <span key={w}>
-                  <span className="hero-word" style={word(i + 1)}>
+                  <span className="hero-word" style={word(i + 2)}>
                     {w}
-                  </span>{" "}
+                  </span>
+                  {i < 2 && " "}
                 </span>
               ))}
             </span>
-          </h1>
+          </span>
+        </h1>
 
-          <p className="hero-fade mt-4 max-w-[34rem] text-subheading text-cream/90 md:mt-5" style={delay(0.32)}>
-            Cuisine béninoise faite maison, livrée à Cotonou et Abomey-Calavi.
-          </p>
+        <p className="hero-fade mt-5 max-w-[40rem] text-subheading text-cream/90 md:mt-6" style={delay(0.4)}>
+          <span className="md:block">Cuisine béninoise faite maison, livrée à Cotonou et Abomey-Calavi.</span>{" "}
+          <span className="md:block">Un message WhatsApp suffit, vous payez à la livraison.</span>
+        </p>
 
-          <div className="hero-fade mt-8 flex flex-col gap-3 sm:flex-row md:mt-10" style={delay(0.42)}>
-            <a href={orderLink()} target="_blank" rel="noopener" className="btn btn-primary">
-              <WhatsAppIcon size={22} />
-              Commander sur WhatsApp
-            </a>
-            <Link href="/menu" className="btn btn-outline-light">
-              Voir la carte
-            </Link>
-          </div>
+        <div
+          className="hero-fade mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row md:mt-10"
+          style={delay(0.5)}
+        >
+          <a href={orderLink()} target="_blank" rel="noopener" className="btn btn-primary">
+            <WhatsAppIcon size={22} />
+            Commander sur WhatsApp
+          </a>
+          <Link href="/menu" className="btn btn-light">
+            Voir la carte
+          </Link>
         </div>
       </div>
 
       {/* Proof bar: a flat brown band along the bottom edge (surface step, no gradient) */}
-      <div className="hero-fade border-t border-cream/15 bg-brown/60" style={delay(0.52)}>
+      <div className="hero-fade border-t border-cream/15 bg-brown/60" style={delay(0.6)}>
         <ul aria-label="Chez Chiro en quelques chiffres" className="container-site grid grid-cols-2 md:grid-cols-4">
           {PROOF.map(({ value, label, Icon, icon }, i) => (
             <li key={label} className={cn("flex flex-col gap-1 border-cream/15 py-4 md:py-6", CELL[i])}>

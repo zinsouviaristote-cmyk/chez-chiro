@@ -207,6 +207,14 @@
     --btn-hover: var(--color-surface);
   }
 
+  /* Secondary on dark surfaces and photos: cream fill, brown text */
+  .btn-light {
+    background: var(--color-cream);
+    color: var(--color-brown);
+    font-size: 1.1875rem;
+    --btn-hover: rgb(49 20 8 / 0.1);
+  }
+
   .btn-outline-light {
     border: 1px solid rgb(253 251 241 / 0.6);
     color: #fff;
@@ -281,6 +289,19 @@
     background-size: 100% 1px;
   }
 
+  /* Card title: underline grows when the card is hovered */
+  .card-title {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 2px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.25s var(--ease-out-soft);
+  }
+  .group:hover .card-title,
+  .group:focus-visible .card-title {
+    background-size: 100% 2px;
+  }
+
   /* Image zoom on card hover */
   .zoom-img {
     transition: transform 0.25s var(--ease-out-soft);
@@ -343,8 +364,13 @@
   }
 }
 
-/* Scroll reveals (state set by <RevealObserver />) */
+/*
+  Scroll reveals (state set by <RevealObserver />):
+  [data-reveal] = <InView> / <Reveal>, [data-group] = <AnimatedGroup> (every
+  direct child), [data-stagger] > [data-item] = legacy <Stagger>.
+*/
 [data-reveal],
+[data-group] > *,
 [data-stagger] > [data-item] {
   opacity: 0;
   transform: translate3d(0, 20px, 0);
@@ -353,22 +379,28 @@
     transform 0.6s var(--ease-out-soft);
   transition-delay: var(--reveal-delay, 0s);
 }
+[data-reveal][data-preset="fade"],
+[data-group][data-preset="fade"] > * {
+  transform: none;
+}
 [data-reveal][data-shown],
+[data-group][data-shown] > *,
 [data-stagger][data-shown] > [data-item] {
   opacity: 1;
   transform: none;
 }
-[data-stagger] > [data-item]:nth-child(2) { --reveal-delay: calc(var(--stagger) * 1); }
-[data-stagger] > [data-item]:nth-child(3) { --reveal-delay: calc(var(--stagger) * 2); }
-[data-stagger] > [data-item]:nth-child(4) { --reveal-delay: calc(var(--stagger) * 3); }
-[data-stagger] > [data-item]:nth-child(5) { --reveal-delay: calc(var(--stagger) * 4); }
-[data-stagger] > [data-item]:nth-child(6) { --reveal-delay: calc(var(--stagger) * 5); }
-[data-stagger] > [data-item]:nth-child(7) { --reveal-delay: calc(var(--stagger) * 6); }
-[data-stagger] > [data-item]:nth-child(8) { --reveal-delay: calc(var(--stagger) * 7); }
-[data-stagger] > [data-item]:nth-child(n + 9) { --reveal-delay: calc(var(--stagger) * 8); }
+:is([data-group], [data-stagger]) > :nth-child(2) { --reveal-delay: calc(var(--stagger) * 1); }
+:is([data-group], [data-stagger]) > :nth-child(3) { --reveal-delay: calc(var(--stagger) * 2); }
+:is([data-group], [data-stagger]) > :nth-child(4) { --reveal-delay: calc(var(--stagger) * 3); }
+:is([data-group], [data-stagger]) > :nth-child(5) { --reveal-delay: calc(var(--stagger) * 4); }
+:is([data-group], [data-stagger]) > :nth-child(6) { --reveal-delay: calc(var(--stagger) * 5); }
+:is([data-group], [data-stagger]) > :nth-child(7) { --reveal-delay: calc(var(--stagger) * 6); }
+:is([data-group], [data-stagger]) > :nth-child(8) { --reveal-delay: calc(var(--stagger) * 7); }
+:is([data-group], [data-stagger]) > :nth-child(n + 9) { --reveal-delay: calc(var(--stagger) * 8); }
 
 @media (prefers-reduced-motion: reduce) {
   [data-reveal],
+  [data-group] > *,
   [data-stagger] > [data-item] {
     opacity: 1;
     transform: none;

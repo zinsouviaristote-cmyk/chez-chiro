@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 /**
- * One IntersectionObserver for every [data-reveal] / [data-stagger] element.
+ * One IntersectionObserver for every [data-reveal] / [data-group] / [data-stagger] element.
  * It sets [data-shown] once, and CSS does the animation (see globals.css).
  */
 export function RevealObserver() {
@@ -12,7 +12,7 @@ export function RevealObserver() {
 
   useEffect(() => {
     const targets = document.querySelectorAll<HTMLElement>(
-      "[data-reveal]:not([data-shown]), [data-stagger]:not([data-shown])",
+      "[data-reveal]:not([data-shown]), [data-group]:not([data-shown]), [data-stagger]:not([data-shown])",
     );
     if (!("IntersectionObserver" in window)) {
       targets.forEach((el) => el.setAttribute("data-shown", ""));

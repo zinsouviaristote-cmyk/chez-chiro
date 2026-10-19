@@ -51,6 +51,7 @@ No serif. No italics in headings, no "accent word in another style" pattern.
 - Letter-spacing normal. Slightly negative only at display sizes (−0.02em at 40–72px).
 - Left-aligned. Body copy is never centred.
 - Uppercase only for very short labels: badges, table headers, footer column labels. No uppercase eyebrow above section headings.
+- Copy: short, concrete, confident French. Headlines say something specific about Chez Chiro, never a slogan. No rhetorical questions, no emoji in headings. Each fact (TikTok numbers, Google rating, phone numbers, Barbecue d'Or) is stated once on the page; the hero proof bar is the one exception (summary of sections 4 and 6).
 - Weights: 400 body, 500 subheadings, 700 headings, buttons and prices.
 - `text-wrap: balance` on headings, `text-wrap: pretty` on paragraphs.
 - Numbers in tables and prices use tabular figures.
@@ -131,7 +132,12 @@ Quick and premium. Tools: motion-primitives components (`TextEffect`, `TextLoop`
 - Never animate the Google rating or any proof number as a counter.
 - `prefers-reduced-motion`: everything static, text loops stop on the first item.
 - The hero never waits for JavaScript: its entrance is pure CSS, the LCP photo is never hidden.
-- Motion (the library) is code-split and loads on idle, never on the critical path.
+- Motion (the library) is code-split and loads once the page has settled (first interaction, or 2.5 s after load), never on the critical path.
+- Implementation in this repo:
+  - `TextLoop` and `SlidingNumber`: the motion-primitives components, on `m` + `LazyMotion`, loaded lazily.
+  - `InView` and `AnimatedGroup` (`src/components/motion/in-view.tsx`): same roles and presets ("slide", "fade"), run by CSS and one shared IntersectionObserver, so sections stay Server Components.
+  - `Carousel` (`src/components/ui/carousel.tsx`): the motion-primitives API on native scroll-snap (native swipe on phones, no animation library).
+- Only interactive parts are client components: TextLoop, carousels, countdown, video players, map. Sections are Server Components.
 
 ---
 
@@ -151,7 +157,7 @@ Header and footer keep their layout and content.
 
 | # | Section | Contents | Surface |
 |---|---|---|---|
-| 1 | **Hero + proof bar** | Full-bleed food photo, brown overlay, slow Ken Burns. Headline with a rotating real dish (`TextLoop`), one supporting line, "Commander sur WhatsApp" + "Voir la carte". Proof bar along the bottom edge: 4,4/5 Google (54 avis) · 2,8 M TikTok · 562 K Facebook · Barbecue d'Or 2022. Absorbs the old stats block ("Toute une communauté à table") and the dish marquee. | Photo |
+| 1 | **Hero + proof bar** | Full-bleed food photo, dark brown overlay, slow Ken Burns. Centred headline on three lines: "Votre" / rotating moment (`TextLoop`: déjeuner, dîner, repas de famille, repas d'équipe) / "signé Chez Chiro.", one supporting line, "Commander sur WhatsApp" + "Voir la carte" (cream fill). Proof bar along the bottom edge: 4,4/5 Google (54 avis) · 2,8 M TikTok · 562 K Facebook · Barbecue d'Or 2022. Absorbs the old stats block ("Toute une communauté à table") and the dish marquee. | Photo |
 | 2 | **Nos plats** | Merges "Les incontournables" (incl. Sauce Gbota Royal and Pack Banger) and the tabbed menu preview. | Cream / soft surface |
 | 3 | **Commander en 3 étapes** | Choose → send the prefilled WhatsApp → pay on delivery. | Cream |
 | 4 | **Chez Chiro sur TikTok** | Merges the TikTok videos and "Notre histoire" (10 years, Barbecue d'Or 2022). | Brown |

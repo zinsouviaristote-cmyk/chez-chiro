@@ -12,16 +12,14 @@ const VARIANTS = {
 };
 
 /**
- * The rotating dish inside the hero headline.
- * - The server HTML shows the first dish, so the headline is complete at first paint.
+ * The rotating word inside the hero headline (its own centred line).
+ * - The server HTML shows the first word, so the headline is complete at first paint.
  * - TextLoop (and Motion) load once the page has settled (see whenSettled).
- * - Every dish is laid out invisibly in the same grid cell: the slot is always as
- *   tall as the longest name, so a 1- or 2-line dish never moves anything. The
- *   visible dish sits at the bottom of the slot, so spare room ends up above the
- *   headline (over the photo), never inside it.
+ * - Every word is laid out invisibly in the same grid cell, so the line keeps
+ *   the size of the longest word and the centred layout never jumps.
  * - Pauses off-screen; never rotates with prefers-reduced-motion.
  */
-export function HeroDishLoop({ dishes }: { dishes: string[] }) {
+export function HeroWordLoop({ words }: { words: string[] }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [Loop, setLoop] = useState<ComponentType<TextLoopProps> | null>(null);
   const [inView, setInView] = useState(true);
@@ -49,21 +47,21 @@ export function HeroDishLoop({ dishes }: { dishes: string[] }) {
   }, []);
 
   return (
-    <span ref={ref} className="grid [text-wrap:wrap]">
-      {dishes.map((dish) => (
-        <span key={dish} className="invisible col-start-1 row-start-1">
-          {dish}
+    <span ref={ref} className="grid justify-items-center whitespace-nowrap">
+      {words.map((w) => (
+        <span key={w} className="invisible col-start-1 row-start-1">
+          {w}
         </span>
       ))}
-      <span className="col-start-1 row-start-1 self-end">
+      <span data-loop className="col-start-1 row-start-1 w-full">
         {Loop ? (
           <Loop interval={2.6} trigger={inView} variants={VARIANTS} transition={{ duration: 0.5, ease: EASE }}>
-            {dishes.map((dish) => (
-              <span key={dish}>{dish}</span>
+            {words.map((w) => (
+              <span key={w}>{w}</span>
             ))}
           </Loop>
         ) : (
-          dishes[0]
+          words[0]
         )}
       </span>
     </span>

@@ -1,9 +1,7 @@
 import { Hero } from "@/components/home/hero";
-import { Signatures } from "@/components/home/signatures";
-import { MenuPreview } from "@/components/home/menu-preview";
+import { Dishes } from "@/components/home/dishes";
 import { HowToOrder } from "@/components/home/how-to-order";
-import { TikTokSection } from "@/components/home/tiktok-section";
-import { Story } from "@/components/home/story";
+import { TikTokStory } from "@/components/home/tiktok-story";
 import { EventSection } from "@/components/home/event";
 import { Reviews } from "@/components/home/reviews";
 import { Infos } from "@/components/home/infos";
@@ -13,11 +11,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Signatures />
-      <MenuPreview />
+      <Dishes />
       <HowToOrder />
-      <TikTokSection />
-      <Story />
+      <TikTokStory />
       <EventSection />
       <Reviews />
       <Infos />
