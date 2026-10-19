@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { MobileOrderBar } from "@/components/mobile-order-bar";
 import { JsonLd } from "@/components/json-ld";
+import { IconSprite } from "@/components/icons";
 import { RevealObserver } from "@/components/motion/reveal-observer";
 import { BRAND, EMAIL, LOCATION, PHONES, SITE_URL, SOCIALS } from "@/lib/site";
 
@@ -106,6 +107,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="fr" className={figtree.variable}>
       <body className="min-h-dvh">
+        <IconSprite />
         <noscript>
           <style>{`[data-reveal],[data-item]{opacity:1!important;transform:none!important}`}</style>
         </noscript>

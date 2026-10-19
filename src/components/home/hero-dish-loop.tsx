@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ComponentType } from "react";
+import { whenSettled } from "@/lib/when-settled";
 import type { TextLoopProps } from "../motion-primitives/text-loop";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -13,7 +14,7 @@ const VARIANTS = {
 /**
  * The rotating dish inside the hero headline.
  * - The server HTML shows the first dish, so the headline is complete at first paint.
- * - TextLoop (and Motion) load once the hero entrance is over and the page is idle.
+ * - TextLoop (and Motion) load once the page has settled (see whenSettled).
  * - Every dish is laid out invisibly in the same grid cell: the slot is always as
  *   tall as the longest name, so a 1- or 2-line dish never moves anything. The
  *   visible dish sits at the bottom of the slot, so spare room ends up above the
@@ -28,19 +29,14 @@ export function HeroDishLoop({ dishes }: { dishes: string[] }) {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let cancelled = false;
-    let idleId: number | undefined;
-    const load = () =>
-      import("../motion-primitives/text-loop").then((mod) => {
+    const stop = whenSettled(() => {
+      void import("../motion-primitives/text-loop").then((mod) => {
         if (!cancelled) setLoop(() => mod.TextLoop);
       });
-    const timer = setTimeout(() => {
-      if ("requestIdleCallback" in window) idleId = window.requestIdleCallback(load, { timeout: 3000 });
-      else void load();
-    }, 1200);
+    });
     return () => {
       cancelled = true;
-      clearTimeout(timer);
-      if (idleId !== undefined) window.cancelIdleCallback(idleId);
+      stop();
     };
   }, []);
 

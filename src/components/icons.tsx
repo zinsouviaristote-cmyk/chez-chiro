@@ -12,44 +12,59 @@ function base({ size = 20, ...props }: IconProps) {
   } as SVGProps<SVGSVGElement>;
 }
 
-export function WhatsAppIcon(props: IconProps) {
+/*
+  Icons repeated across the page (WhatsApp ×30, stars, arrows…) live once in
+  <IconSprite /> (rendered in the layout) and are drawn with <use>, so their
+  paths are not repeated in the HTML and the RSC payload.
+*/
+const SPRITE: Record<string, string> = {
+  "whatsapp": "M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.01Zm-7.01 15.24h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.21 8.21 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z",
+  "phone": "M6.62 10.79a15.15 15.15 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z",
+  "arrow-right": "M13.06 4.94a1.5 1.5 0 0 1 2.12 0l6 6a1.5 1.5 0 0 1 0 2.12l-6 6a1.5 1.5 0 0 1-2.12-2.12l3.44-3.44H4a1.5 1.5 0 0 1 0-3h12.5l-3.44-3.44a1.5 1.5 0 0 1 0-2.12Z",
+  "arrow-up-right": "M8 5.5A1.5 1.5 0 0 1 9.5 4h9A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-3 0V9.12l-9.94 9.94a1.5 1.5 0 0 1-2.12-2.12L14.88 7H9.5A1.5 1.5 0 0 1 8 5.5Z",
+  "star": "M12 2.5l2.94 6.1 6.56.75-4.87 4.53 1.3 6.62L12 17.2l-5.93 3.3 1.3-6.62L2.5 9.35l6.56-.75L12 2.5Z",
+  "tiktok": "M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.37-2.48V9.66a5.73 5.73 0 0 0-.77-.05A5.68 5.68 0 0 0 4.18 15.3 5.68 5.68 0 0 0 9.86 21a5.68 5.68 0 0 0 5.68-5.69V9.01a7.33 7.33 0 0 0 4.28 1.37V7.29a4.28 4.28 0 0 1-3.22-1.47Z",
+  "facebook": "M13.5 21v-7.5h2.53l.38-2.94H13.5V8.68c0-.85.24-1.43 1.46-1.43h1.55V4.62a20.6 20.6 0 0 0-2.26-.12c-2.24 0-3.77 1.37-3.77 3.88v2.18H7.95v2.94h2.53V21h3.02Z",
+};
+
+export function IconSprite() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
-      <path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.01Zm-7.01 15.24h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.21 8.21 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z" />
+    <svg aria-hidden width="0" height="0" focusable={false} style={{ position: "absolute" }}>
+      {Object.entries(SPRITE).map(([id, d]) => (
+        <symbol key={id} id={`i-${id}`} viewBox="0 0 24 24">
+          <path d={d} />
+        </symbol>
+      ))}
     </svg>
   );
+}
+
+function SpriteIcon({ id, ...props }: IconProps & { id: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <use href={`#i-${id}`} />
+    </svg>
+  );
+}
+
+export function WhatsAppIcon(props: IconProps) {
+  return <SpriteIcon id="whatsapp" {...props} />;
 }
 
 export function PhoneIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
-      <path d="M6.62 10.79a15.15 15.15 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" />
-    </svg>
-  );
+  return <SpriteIcon id="phone" {...props} />;
 }
 
 export function ArrowRightIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
-      <path d="M13.06 4.94a1.5 1.5 0 0 1 2.12 0l6 6a1.5 1.5 0 0 1 0 2.12l-6 6a1.5 1.5 0 0 1-2.12-2.12l3.44-3.44H4a1.5 1.5 0 0 1 0-3h12.5l-3.44-3.44a1.5 1.5 0 0 1 0-2.12Z" />
-    </svg>
-  );
+  return <SpriteIcon id="arrow-right" {...props} />;
 }
 
 export function ArrowUpRightIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
-      <path d="M8 5.5A1.5 1.5 0 0 1 9.5 4h9A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-3 0V9.12l-9.94 9.94a1.5 1.5 0 0 1-2.12-2.12L14.88 7H9.5A1.5 1.5 0 0 1 8 5.5Z" />
-    </svg>
-  );
+  return <SpriteIcon id="arrow-up-right" {...props} />;
 }
 
 export function StarIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
-      <path d="M12 2.5l2.94 6.1 6.56.75-4.87 4.53 1.3 6.62L12 17.2l-5.93 3.3 1.3-6.62L2.5 9.35l6.56-.75L12 2.5Z" />
-    </svg>
-  );
+  return <SpriteIcon id="star" {...props} />;
 }
 
 export function MapPinIcon(props: IconProps) {
@@ -109,19 +124,11 @@ export function CloseIcon(props: IconProps) {
 }
 
 export function TikTokIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
-      <path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.37-2.48V9.66a5.73 5.73 0 0 0-.77-.05A5.68 5.68 0 0 0 4.18 15.3 5.68 5.68 0 0 0 9.86 21a5.68 5.68 0 0 0 5.68-5.69V9.01a7.33 7.33 0 0 0 4.28 1.37V7.29a4.28 4.28 0 0 1-3.22-1.47Z" />
-    </svg>
-  );
+  return <SpriteIcon id="tiktok" {...props} />;
 }
 
 export function FacebookIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
-      <path d="M13.5 21v-7.5h2.53l.38-2.94H13.5V8.68c0-.85.24-1.43 1.46-1.43h1.55V4.62a20.6 20.6 0 0 0-2.26-.12c-2.24 0-3.77 1.37-3.77 3.88v2.18H7.95v2.94h2.53V21h3.02Z" />
-    </svg>
-  );
+  return <SpriteIcon id="facebook" {...props} />;
 }
 
 export function InstagramIcon(props: IconProps) {

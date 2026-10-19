@@ -8,6 +8,7 @@ import logo from "@/assets/images/logo.png";
 import { NAV, PHONES } from "@/lib/site";
 import { callLink, orderLink } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
+import { whenSettled } from "@/lib/when-settled";
 import { MenuIcon, PhoneIcon, WhatsAppIcon } from "./icons";
 
 const loadMobileMenu = () => import("./mobile-menu");
@@ -26,16 +27,8 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Warm the mobile-menu chunk once the page is idle, so the first tap is instant.
-  useEffect(() => {
-    const warm = () => void loadMobileMenu();
-    if ("requestIdleCallback" in window) {
-      const id = window.requestIdleCallback(warm, { timeout: 4000 });
-      return () => window.cancelIdleCallback(id);
-    }
-    const t = setTimeout(warm, 2500);
-    return () => clearTimeout(t);
-  }, []);
+  // Warm the mobile-menu chunk once the page has settled, so the first tap is instant.
+  useEffect(() => whenSettled(() => void loadMobileMenu()), []);
 
   return (
     <>
