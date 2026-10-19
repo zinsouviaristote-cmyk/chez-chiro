@@ -6,8 +6,10 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     qualities: [50, 60, 75],
-    deviceSizes: [390, 640, 720, 828, 1080, 1280, 1600, 1920],
-    imageSizes: [96, 140, 180, 260, 320, 420],
+    // Few widths on purpose: every srcset entry is written twice in the page
+    // (HTML + RSC payload), so long lists cost parse and hydration time.
+    deviceSizes: [640, 828, 1080, 1280, 1920],
+    imageSizes: [128, 256, 384],
   },
   turbopack: {
     rules: {
