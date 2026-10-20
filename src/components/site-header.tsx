@@ -44,6 +44,13 @@ export function SiteHeader() {
   // Warm the mobile-menu chunk once the page has settled, so the first tap is instant.
   useEffect(() => whenSettled(() => void loadMobileMenu()), []);
 
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <header
@@ -61,7 +68,12 @@ export function SiteHeader() {
             scrolled ? "h-16" : "h-[4.5rem] md:h-20",
           )}
         >
-          <Link href="/" className="relative flex min-h-11 shrink-0 items-center" aria-label="Chez Chiro — accueil">
+          <Link 
+            href="/" 
+            className="relative flex min-h-11 shrink-0 items-center" 
+            aria-label="Chez Chiro — accueil"
+            onClick={handleLogoClick}
+          >
             <Image
               src={logo}
               alt="Restaurant Chez Chiro"

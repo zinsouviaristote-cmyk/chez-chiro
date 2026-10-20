@@ -1,10 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import logoReversed from "@/assets/images/logo-reversed.png";
-import { BRAND, EMAIL, HOURS, LOCATION, NAV, PHONES, SOCIALS } from "@/lib/site";
+import { BRAND, EMAIL, HOURS, NAV, PHONES, SOCIALS } from "@/lib/site";
 import { callLink, orderLink } from "@/lib/whatsapp";
 import { FacebookIcon, InstagramIcon, TikTokIcon, WhatsAppIcon } from "./icons";
-import { LazyMap } from "./map/lazy-map";
 
 const socials = [
   { href: SOCIALS.tiktok.url, label: "TikTok", Icon: TikTokIcon },
@@ -14,11 +16,22 @@ const socials = [
 ];
 
 export function SiteFooter() {
+  const pathname = usePathname();
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="bg-brown text-cream">
       <div className="container-site grid gap-12 py-16 md:grid-cols-12 md:py-20">
         <div className="md:col-span-4">
-          <Image src={logoReversed} alt="Restaurant Chez Chiro" sizes="180px" className="h-16 w-auto" />
+          <Link href="/" aria-label="Chez Chiro — accueil" onClick={handleLogoClick}>
+            <Image src={logoReversed} alt="Restaurant Chez Chiro" sizes="180px" className="h-16 w-auto" />
+          </Link>
           <p className="mt-6 max-w-xs text-[0.9375rem] leading-relaxed text-cream/70">
             Cuisine béninoise faite maison, livrée à Cotonou et à Abomey-Calavi. Commandez sur WhatsApp, payez à la livraison.
           </p>
@@ -72,17 +85,17 @@ export function SiteFooter() {
           </div>
           <div>
             <h2 className="eyebrow text-orange">Liens rapides</h2>
-              <nav aria-label="Pied de page" className="mt-5">
-                <ul className="space-y-2 text-[0.9375rem] text-cream/70 max-md:space-y-0">
-                  {NAV.map((item) => (
-                    <li key={item.href}>
-                      <Link href={item.href} className="link-underline hover:text-cream max-md:inline-flex max-md:min-h-11 max-md:min-w-11 max-md:items-center">
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+            <nav aria-label="Pied de page" className="mt-5">
+              <ul className="space-y-2 text-[0.9375rem] text-cream/70 max-md:space-y-0">
+                {NAV.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className="link-underline hover:text-cream max-md:inline-flex max-md:min-h-11 max-md:min-w-11 max-md:items-center">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
