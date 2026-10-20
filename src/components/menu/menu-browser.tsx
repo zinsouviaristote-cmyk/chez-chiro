@@ -75,7 +75,7 @@ function CategoryNav({ active, onPick }: { active: string; onPick: (id: string) 
               data-id={s.id}
               href={`#${s.id}`}
               aria-current={s.id === active ? "true" : undefined}
-              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-full px-4 text-[0.9375rem] font-bold text-ink transition-colors duration-300 hover:text-ink/70 data-[checked=true]:text-cream"
+              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-full px-3.5 text-[0.875rem] font-bold md:px-4 md:text-[0.9375rem] text-ink transition-colors duration-300 hover:text-ink/70 data-[checked=true]:text-cream"
             >
               {s.tab}
             </a>

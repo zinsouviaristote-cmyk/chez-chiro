@@ -67,7 +67,7 @@ export function Reviews() {
           {/* Featured review, in large type */}
           <InView as="figure" delay={0.08} className="flex flex-col justify-center md:col-span-8 md:pl-8 lg:pl-12">
             <Stars rating={FEATURED_REVIEW.rating} size={20} />
-            <blockquote className="mt-5 text-[1.375rem] font-medium leading-[1.4] text-ink md:text-[1.875rem] md:leading-[1.33]">
+            <blockquote className="mt-5 text-[1.1875rem] font-medium leading-[1.45] text-ink md:text-[1.875rem] md:leading-[1.33]">
               « {FEATURED_REVIEW.text} »
             </blockquote>
             <figcaption className="mt-6 text-small text-ink-soft">

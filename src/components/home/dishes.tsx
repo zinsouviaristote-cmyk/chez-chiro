@@ -104,7 +104,7 @@ export function Dishes() {
             >
               <div className={cn(!GBOTA_PHOTO && "md:col-span-7")}>
                 <p className="text-small font-bold text-orange">La signature de la maison</p>
-                <h3 className={cn("mt-3", GBOTA_PHOTO ? "text-[2.5rem] font-bold leading-[1.08] tracking-[-0.02em] md:text-[3.5rem]" : "text-display")}>
+                <h3 className={cn("mt-3", GBOTA_PHOTO ? "text-[2.5rem] font-bold leading-[1.08] tracking-[-0.02em] md:text-[3.5rem]" : "text-[2rem] font-bold leading-[1.1] tracking-[-0.02em] md:text-display")}>
                   {GBOTA.name}
                 </h3>
                 <p className="mt-4 max-w-md text-subheading text-cream/80">

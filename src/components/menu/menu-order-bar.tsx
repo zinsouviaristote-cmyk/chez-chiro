@@ -7,19 +7,16 @@ import { addOne, clearCart, removeOne, useCart } from "@/lib/cart-store";
 import { dishById, priceText } from "@/lib/menu";
 import { formatFcfa } from "@/lib/utils";
 import { CloseIcon, MinusIcon, PlusIcon, WhatsAppIcon } from "../icons";
-import { QuickOrderBar, useHeroGone } from "../mobile-order-bar";
 
 const totalText = (amount: number, from: boolean) => `${from ? "dès " : ""}${formatFcfa(amount)}`;
 
 /**
- * Bottom of /menu. Empty order: the WhatsApp + call bar on mobile (as on the
- * homepage). Once a dish is added: a "Votre commande (n)" bar, on every
- * screen size, that opens the order drawer.
+ * Bottom of /menu: once a dish is added, a "Votre commande (n)" bar, on every
+ * screen size, that opens the order drawer. Nothing while the order is empty.
  */
 export function MenuOrderBar() {
   const cart = useCart();
   const area = useSelectedArea();
-  const heroGone = useHeroGone("/menu");
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
 
@@ -42,10 +39,8 @@ export function MenuOrderBar() {
 
   return (
     <>
-      {count === 0 ? (
-        <QuickOrderBar visible={heroGone} />
-      ) : (
-        <div className="pb-safe fixed inset-x-0 bottom-0 z-40 border-t border-cream/10 bg-brown px-4 pt-3 md:inset-x-auto md:bottom-6 md:left-1/2 md:w-[28rem] md:-translate-x-1/2 md:rounded-lg md:border-0 md:p-3">
+      {count > 0 && (
+        <div data-order-bar className="pb-safe fixed inset-x-0 bottom-0 z-40 border-t border-cream/10 bg-brown px-4 pt-3 md:inset-x-auto md:bottom-6 md:left-1/2 md:w-[28rem] md:-translate-x-1/2 md:rounded-lg md:border-0 md:p-3">
           <button
             type="button"
             onClick={() => setOpen(true)}

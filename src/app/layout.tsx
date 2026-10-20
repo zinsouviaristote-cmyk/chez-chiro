@@ -4,7 +4,6 @@ import "./globals.css";
 import { AnnouncementBar } from "@/components/announcement-bar";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { MobileOrderBar } from "@/components/mobile-order-bar";
 import { JsonLd } from "@/components/json-ld";
 import { IconSprite } from "@/components/icons";
 import { RevealObserver } from "@/components/motion/reveal-observer";
@@ -121,7 +120,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         <main id="contenu">{children}</main>
         <SiteFooter />
-        <MobileOrderBar />
         <RevealObserver />
         <JsonLd data={restaurantLd} />
       </body>

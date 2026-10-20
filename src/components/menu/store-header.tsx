@@ -45,22 +45,25 @@ export function StoreHeader() {
 
         <div className="mt-4 flex flex-col gap-5 md:flex-row md:items-end md:justify-between md:gap-10">
           <div>
-            <h1 id="menu-title" className="text-[2.5rem] font-bold leading-[1.08] tracking-[-0.02em] text-ink md:text-[3rem]">
+            <h1 id="menu-title" className="text-[2rem] font-bold leading-[1.1] tracking-[-0.02em] text-ink md:text-[3rem]">
               Chez Chiro
             </h1>
-            {/* Each separator stays with the item before it: a wrapped line never starts with "·" */}
-            <p className="mt-3 flex flex-wrap items-center text-[0.9375rem] text-ink-soft md:text-body">
-              {meta.map((item, i) => (
-                <span key={i} className="inline-flex items-center whitespace-nowrap">
-                  {item}
-                  {i < meta.length - 1 && (
-                    <span aria-hidden className="mx-2 text-ink/30">
-                      ·
-                    </span>
-                  )}
-                </span>
-              ))}
-            </p>
+            {/*
+              Each item carries its "·" in front; the row is shifted left by one
+              separator and clipped, so no line starts or ends with a "·".
+            */}
+            <div className="mt-3 overflow-hidden">
+              <p className="-ml-5 flex flex-wrap items-center text-[0.9375rem] text-ink-soft md:text-body">
+                {meta.map((item, i) => (
+                  <span
+                    key={i}
+                    className="inline-flex items-center whitespace-nowrap before:w-5 before:text-center before:text-ink/30 before:content-['·']"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </p>
+            </div>
           </div>
           <MenuSearch />
         </div>

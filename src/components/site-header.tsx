@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import logo from "@/assets/images/logo.png";
 import { NAV, PHONES } from "@/lib/site";
@@ -14,10 +15,23 @@ import { MenuIcon, PhoneIcon, WhatsAppIcon } from "./icons";
 const loadMobileMenu = () => import("./mobile-menu");
 const MobileMenu = dynamic(loadMobileMenu, { ssr: false });
 
+/** NAV entry for what's on screen: the page itself, or on the homepage the section crossing the upper third. */
+function currentNavHref(pathname: string) {
+  if (pathname !== "/") return NAV.find((item) => item.href === pathname)?.href ?? null;
+  const line = window.innerHeight / 3;
+  const hit = NAV.find((item) => {
+    const box = document.getElementById(item.href.split("#")[1] ?? "")?.getBoundingClientRect();
+    return box && box.top <= line && box.bottom > line;
+  });
+  return hit?.href ?? null;
+}
+
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [menuMounted, setMenuMounted] = useState(false);
+  const [current, setCurrent] = useState<string | null>(null);
+  const pathname = usePathname();
   const close = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
@@ -89,6 +103,7 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => {
+                setCurrent(currentNavHref(pathname));
                 setMenuMounted(true);
                 setOpen(true);
               }}
@@ -103,7 +118,7 @@ export function SiteHeader() {
         </div>
       </header>
 
-      {menuMounted && <MobileMenu open={open} onClose={close} />}
+      {menuMounted && <MobileMenu open={open} onClose={close} current={current} />}
     </>
   );
 }

@@ -73,7 +73,7 @@ export function DishCard({ dish, photo, qty }: { dish: Dish; photo?: Photo; qty:
       )}
     >
       <div className="flex min-w-0 flex-1 flex-col">
-        <h3 className="text-[1.0625rem] font-bold leading-snug text-ink">
+        <h3 className="text-base font-bold leading-snug text-ink md:text-[1.0625rem]">
           {dish.name}
           {dish.tag && (
             <span className="ml-2 inline-block translate-y-[-2px] rounded bg-brown px-1.5 py-0.5 align-middle text-[0.6875rem] font-bold uppercase leading-normal tracking-[0.06em] text-cream">

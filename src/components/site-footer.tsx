@@ -15,7 +15,7 @@ const socials = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-brown pb-28 text-cream md:pb-0">
+    <footer className="bg-brown text-cream">
       <div className="container-site grid gap-12 py-16 md:grid-cols-12 md:py-20">
         <div className="md:col-span-4">
           <Image src={logoReversed} alt="Restaurant Chez Chiro" sizes="180px" className="h-16 w-auto" />
