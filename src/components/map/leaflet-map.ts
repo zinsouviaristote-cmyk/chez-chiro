@@ -8,6 +8,10 @@ import { LOCATION } from "@/lib/site";
 
 export type MapMode = "full" | "preview";
 
+// Wide enough to recognise Godomey and the main roads around the pin.
+// Same zoom for the section map and the footer preview.
+const ZOOM = 13;
+
 /**
  * Mounts the OpenStreetMap map (free tiles, no API key) with the Chez Chiro pin.
  * - Never traps page scrolling: no scroll-wheel zoom; on touch screens a
@@ -22,7 +26,7 @@ export function mountMap(el: HTMLElement, mode: MapMode, onOpen: () => void) {
 
   const map = L.map(el, {
     center: LOCATION.coords,
-    zoom: full ? 15 : 13,
+    zoom: ZOOM,
     minZoom: 11,
     maxZoom: 18,
     scrollWheelZoom: false,
