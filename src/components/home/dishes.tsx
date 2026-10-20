@@ -16,7 +16,7 @@ const byId = (id: string) => {
   return dish;
 };
 
-const priceLabel = (dish: Dish) => (dish.single ? formatFcfa(dish.price) : `dès ${formatFcfa(dish.price)}`);
+const priceLabel = (dish: Dish) => (dish.single ? formatFcfa(dish.price) : `à partir de ${formatFcfa(dish.price)}`);
 const fullName = (dish: Dish) => (dish.aside ? `${dish.name}, ${dish.aside}` : dish.name);
 
 const GBOTA = byId("gbota-royal");

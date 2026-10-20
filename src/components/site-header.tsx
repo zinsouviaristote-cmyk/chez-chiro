@@ -96,7 +96,12 @@ export function SiteHeader() {
               <PhoneIcon size={16} />
               Appeler
             </a>
-            <a href={orderLink()} target="_blank" rel="noopener" className="btn btn-primary btn-pill">
+            <a 
+              href={orderLink()} 
+              target="_blank" 
+              rel="noopener" 
+              className="btn btn-primary btn-pill hidden md:inline-flex"
+            >
               <WhatsAppIcon size={18} />
               Commander
             </a>

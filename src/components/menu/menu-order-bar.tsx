@@ -8,7 +8,7 @@ import { dishById, priceText } from "@/lib/menu";
 import { formatFcfa } from "@/lib/utils";
 import { CloseIcon, MinusIcon, PlusIcon, WhatsAppIcon } from "../icons";
 
-const totalText = (amount: number, from: boolean) => `${from ? "dès " : ""}${formatFcfa(amount)}`;
+const totalText = (amount: number, from: boolean) => `${from ? "à partir de " : ""}${formatFcfa(amount)}`;
 
 /**
  * Bottom of /menu: once a dish is added, a "Votre commande (n)" bar, on every

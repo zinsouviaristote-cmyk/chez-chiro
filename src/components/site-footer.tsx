@@ -71,24 +71,18 @@ export function SiteFooter() {
             </ul>
           </div>
           <div>
-            <h2 className="eyebrow text-orange">Nous trouver</h2>
-            <ul className="mt-5 space-y-3 text-[0.9375rem]">
-              <li>{LOCATION.label}</li>
-              <li>
-                <LazyMap mode="preview" className="h-32 w-full max-w-[16rem] bg-cream/10" />
-              </li>
-            </ul>
-            <nav aria-label="Pied de page" className="mt-8">
-              <ul className="space-y-2 text-[0.9375rem] text-cream/70 max-md:space-y-0">
-                {NAV.map((item) => (
-                  <li key={item.href}>
-                    <Link href={item.href} className="link-underline hover:text-cream max-md:inline-flex max-md:min-h-11 max-md:min-w-11 max-md:items-center">
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <h2 className="eyebrow text-orange">Liens rapides</h2>
+              <nav aria-label="Pied de page" className="mt-5">
+                <ul className="space-y-2 text-[0.9375rem] text-cream/70 max-md:space-y-0">
+                  {NAV.map((item) => (
+                    <li key={item.href}>
+                      <Link href={item.href} className="link-underline hover:text-cream max-md:inline-flex max-md:min-h-11 max-md:min-w-11 max-md:items-center">
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ export function StoreHeader() {
       <span className="sr-only">sur 5 </span>({GOOGLE.count} avis Google)
     </>
   );
-  const meta = [rating, `Livraison dès ${formatFcfa(minDelivery)}`, "9h–20h", "Paiement à la livraison"];
+  const meta = [rating, `Livraison à partir de ${formatFcfa(minDelivery)}`, "9h–20h", "Paiement à la livraison"];
   return (
     <section data-hero aria-labelledby="menu-title" className="pb-6 md:pb-8 md:pt-6">
       <div className="mx-auto max-w-[calc(1200px+4rem)] md:px-8">

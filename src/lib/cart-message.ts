@@ -15,7 +15,7 @@ export function cartTotal(entries: CartEntry[]) {
 export function cartOrderLink(entries: CartEntry[], area?: string) {
   const { amount, from } = cartTotal(entries);
   const lines = entries.map(
-    ({ dish, qty }) => `• ${qty} × ${orderName(dish)} : ${dish.single ? "" : "dès "}${formatFcfa(dish.price * qty)}`,
+    ({ dish, qty }) => `• ${qty} × ${orderName(dish)} : ${dish.single ? "" : "à partir de"}${formatFcfa(dish.price * qty)}`,
   );
   return whatsappLink(
     [

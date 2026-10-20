@@ -1,7 +1,3 @@
-// InView and AnimatedGroup, with the same roles and presets as the
-// motion-primitives components, but run by CSS transitions and one shared
-// IntersectionObserver (<RevealObserver />). Sections stay Server Components
-// and ship no JavaScript for their reveals; reduced motion shows everything.
 import type { CSSProperties, ReactNode } from "react";
 
 type Tag = "div" | "section" | "ul" | "ol" | "li" | "article" | "p" | "span" | "figure" | "header" | "dl";
@@ -23,7 +19,14 @@ type InViewProps = {
 export function InView({ children, as: Comp = "div", className, preset = "slide", delay = 0, id }: InViewProps) {
   const style = delay ? ({ "--reveal-delay": `${delay}s` } as CSSProperties) : undefined;
   return (
-    <Comp id={id} data-reveal="" data-preset={preset} className={className} style={style}>
+    <Comp 
+      id={id} 
+      data-reveal="" 
+      data-preset={preset} 
+      className={className} 
+      style={style}
+      suppressHydrationWarning
+    >
       {children}
     </Comp>
   );
@@ -55,6 +58,7 @@ export function AnimatedGroup({
       data-preset={preset}
       className={className}
       style={{ "--stagger": `${stagger}s` } as CSSProperties}
+      suppressHydrationWarning
     >
       {children}
     </Comp>

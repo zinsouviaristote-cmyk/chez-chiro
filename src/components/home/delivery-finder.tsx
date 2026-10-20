@@ -139,7 +139,7 @@ export function DeliveryFinder() {
               >
                 <span className="font-bold text-ink">{a.name}</span>
                 <span className="text-small text-ink-soft">
-                  Zone {a.zone.zone} · dès {formatFcfa(a.zone.standard.price)}
+                  Zone {a.zone.zone} · à partir de {formatFcfa(a.zone.standard.price)}
                 </span>
               </li>
             ))}

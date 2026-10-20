@@ -99,7 +99,7 @@ export const MENU: MenuCategory[] = [
         name: "Riz au gras",
         description:
           "Avec poulet bicyclette, lapin braisé, mouton braisé, aileron braisé ou poisson (silivi ou tilapia).",
-        note: "Avec tilapia : dès 3 500 FCFA",
+        note: "Avec tilapia : à partir de 3 500 FCFA",
         price: 3000,
         levels: [3000, 3500, 4000, 6000],
       },
@@ -133,7 +133,7 @@ export const MENU: MenuCategory[] = [
         name: "Attiéké",
         description:
           "Avec poulet bicyclette, lapin, mouton ou aileron braisés, aloco poisson (silivi ou tilapia) ou croupion de dinde.",
-        note: "Avec silivi : dès 3 000 FCFA · avec tilapia : dès 4 000 FCFA",
+        note: "Avec silivi : à partir de 3 000 FCFA · avec tilapia : à partir de 4 000 FCFA",
         price: 3000,
         levels: [3000, 3500, 4000, 5000, 6000],
       },
@@ -142,7 +142,7 @@ export const MENU: MenuCategory[] = [
         name: "Wassa-wassa",
         description:
           "Avec poulet bicyclette, lapin, mouton ou aileron braisés, poisson (silivi ou tilapia) ou croupion de dinde.",
-        note: "Avec tilapia : dès 3 500 FCFA",
+        note: "Avec tilapia : à partir de 3 500 FCFA",
         price: 3000,
         levels: [3000, 3500, 4000, 5000, 6000],
       },
@@ -174,7 +174,7 @@ export const MENU: MenuCategory[] = [
         name: "Frites avec aloco",
         description:
           "Avec poulet bicyclette, lapin, mouton ou aileron braisés, poisson (silivi ou tilapia) ou croupion de dinde.",
-        note: "Avec tilapia : dès 4 000 FCFA",
+        note: "Avec tilapia : à partir de 4 000 FCFA",
         price: 3000,
         levels: [3000, 3500, 4000, 5000, 6000],
       },
@@ -299,9 +299,9 @@ export const MENU: MenuCategory[] = [
 
 export const ALL_DISHES: Dish[] = [PACK_BANGER, ...MENU.flatMap((c) => c.dishes)];
 
-/** "dès 3 000 FCFA", or "6 000 FCFA" for a single-price item. */
+/** "à partir de 3 000 FCFA", or "6 000 FCFA" for a single-price item. */
 export function priceText(dish: Pick<Dish, "price" | "single">) {
-  return dish.single ? formatFcfa(dish.price) : `dès ${formatFcfa(dish.price)}`;
+  return dish.single ? formatFcfa(dish.price) : `à partir de ${formatFcfa(dish.price)}`;
 }
 
 /** Name as written in WhatsApp messages: "Sauce Gbota Royal, la tête de mouton". */
