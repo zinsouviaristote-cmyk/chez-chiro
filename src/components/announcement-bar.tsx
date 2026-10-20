@@ -8,7 +8,7 @@ export function AnnouncementBar() {
       href="/#manifestation"
       className="group relative z-[51] block bg-brown text-cream"
     >
-      <div className="container-site flex h-9 items-center justify-center gap-2.5 text-[0.8125rem] font-medium">
+      <div className="container-site flex h-11 items-center justify-center gap-2.5 text-[0.8125rem] font-medium">
         <SparkIcon size={12} className="shrink-0 text-spark" />
         <span className="truncate">
           <span className="font-bold text-orange">{EVENT.name}</span>

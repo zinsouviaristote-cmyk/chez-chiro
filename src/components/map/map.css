@@ -1,0 +1,97 @@
+/* Leaflet, in the site's palette (loaded with the map chunk only). */
+.cc-map.leaflet-container {
+  background: var(--color-surface);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.cc-map.leaflet-container.leaflet-dragging,
+.cc-map.leaflet-container.leaflet-dragging .leaflet-interactive {
+  cursor: grabbing;
+}
+
+/* Warm the OpenStreetMap tiles towards cream and brown. */
+.cc-map .leaflet-tile-pane {
+  filter: sepia(0.42) saturate(0.78) hue-rotate(-12deg) brightness(1.03) contrast(0.94);
+}
+
+.cc-map .leaflet-control-attribution {
+  margin: 0;
+  padding: 2px 8px;
+  border-top-left-radius: 0.5rem;
+  background: rgb(253 251 241 / 0.88);
+  color: var(--color-ink-soft);
+  line-height: 1.5;
+}
+.cc-map .leaflet-control-attribution a {
+  position: relative;
+  color: var(--color-ink);
+}
+/* Legally required credit: small to the eye, 44px tall to the finger. */
+.cc-map .leaflet-control-attribution a::after {
+  content: "";
+  position: absolute;
+  inset: -26px -4px -2px;
+}
+
+.cc-map .leaflet-bar {
+  margin: 0 0 12px 12px;
+  border: 1px solid var(--color-line);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: none;
+}
+.cc-map .leaflet-bar a,
+.cc-map.leaflet-touch .leaflet-bar a {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  background: var(--color-cream);
+  border-bottom-color: var(--color-line);
+  transition: background-color 0.2s ease;
+}
+.cc-map .leaflet-bar a:hover {
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+.cc-map.leaflet-touch .leaflet-bar {
+  border: 1px solid var(--color-line);
+}
+
+/* Pin: the logo on a cream badge, orange ring and point. */
+.cc-pin {
+  background: none;
+  border: 0;
+}
+.cc-pin__badge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: visible;
+  border: 3px solid var(--color-orange);
+  border-radius: 9999px;
+  background: var(--color-cream);
+}
+.cc-pin__badge::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-top: 9px solid var(--color-orange);
+  border-bottom: 0;
+  transform: translateX(-50%);
+}
+.leaflet-container .leaflet-marker-pane .cc-pin__badge img {
+  display: block;
+  width: 74%;
+  height: 74%;
+  object-fit: contain;
+}

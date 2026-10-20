@@ -230,20 +230,20 @@
   }
 
   /* Header CTAs: the only pill buttons on the site (layout kept from V1) */
+  /* 19px labels: white on orange must be WCAG large text (see .btn-primary). */
   .btn-pill {
     width: auto;
-    min-height: 0;
+    min-height: 2.75rem;
     border-radius: 9999px;
-    padding: 0.7rem 1.1rem;
-    font-size: 0.875rem;
+    padding: 0.55rem 1.05rem;
+    font-size: 1.1875rem;
     line-height: 1;
     gap: 0.45rem;
-    letter-spacing: 0.015em;
   }
   .btn-pill.btn-pill-outline {
     border: 2px solid var(--color-brown);
     color: var(--color-brown);
-    padding: calc(0.7rem - 2px) calc(1.1rem - 2px);
+    padding: calc(0.55rem - 2px) calc(1.05rem - 2px);
     transition:
       transform 0.2s var(--ease-out-soft),
       color 0.2s ease;

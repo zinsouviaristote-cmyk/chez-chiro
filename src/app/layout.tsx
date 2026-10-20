@@ -105,7 +105,7 @@ const restaurantLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={figtree.variable}>
+    <html lang="fr" className={figtree.variable} data-scroll-behavior="smooth">
       <body className="min-h-dvh">
         <IconSprite />
         <noscript>

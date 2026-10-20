@@ -5,8 +5,8 @@ function wa(number: string, text: string) {
   return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
 }
 
-/** Generic order message, used by the main CTAs. */
-export function orderLink() {
+/** Generic order message, used by the main CTAs. `area` prefills the neighbourhood (e.g. "Togba (zone B)"). */
+export function orderLink(area?: string) {
   return wa(
     PHONES.whatsapp.e164,
     [
@@ -14,8 +14,23 @@ export function orderLink() {
       "Je voudrais passer une commande.",
       "",
       "Mes plats : ",
-      "Mon quartier : ",
+      `Mon quartier : ${area ?? ""}`,
       "Livraison standard ou premium : ",
+    ].join("\n"),
+  );
+}
+
+/** A neighbourhood missing from the delivery zones: ask before ordering. */
+export function areaQuestionLink(area?: string) {
+  const name = area?.trim();
+  return wa(
+    PHONES.whatsapp.e164,
+    [
+      "Bonjour Chez Chiro 👋",
+      name
+        ? `Mon quartier, ${name}, n'est pas dans la liste des zones de livraison.`
+        : "Mon quartier n'est pas dans la liste des zones de livraison : ",
+      "Livrez-vous chez moi ? Quels sont les frais et le temps de livraison ?",
     ].join("\n"),
   );
 }

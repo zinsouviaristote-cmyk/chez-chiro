@@ -3,7 +3,8 @@ import Link from "next/link";
 import logoReversed from "@/assets/images/logo-reversed.png";
 import { BRAND, EMAIL, HOURS, LOCATION, NAV, PHONES, SOCIALS } from "@/lib/site";
 import { callLink, orderLink } from "@/lib/whatsapp";
-import { ArrowUpRightIcon, FacebookIcon, InstagramIcon, TikTokIcon, WhatsAppIcon } from "./icons";
+import { FacebookIcon, InstagramIcon, TikTokIcon, WhatsAppIcon } from "./icons";
+import { LazyMap } from "./map/lazy-map";
 
 const socials = [
   { href: SOCIALS.tiktok.url, label: "TikTok", Icon: TikTokIcon },
@@ -29,7 +30,7 @@ export function SiteFooter() {
                   target="_blank"
                   rel="noopener"
                   aria-label={`Chez Chiro sur ${label}`}
-                  className="grid size-11 place-items-center rounded-full border border-cream/20 text-cream transition duration-300 hover:-translate-y-0.5 hover:border-orange hover:bg-orange hover:text-brown"
+                  className="grid size-11 place-items-center rounded-full border border-cream/20 text-cream transition duration-300 hover:-translate-y-0.5 hover:border-orange hover:bg-orange hover:text-white"
                 >
                   <Icon size={19} />
                 </a>
@@ -41,19 +42,19 @@ export function SiteFooter() {
         <div className="grid gap-10 sm:grid-cols-3 md:col-span-8">
           <div>
             <h2 className="eyebrow text-orange">Commander</h2>
-            <ul className="mt-5 space-y-3 text-[0.9375rem]">
+            <ul className="mt-5 space-y-3 text-[0.9375rem] max-md:mt-3 max-md:space-y-0">
               <li>
-                <a href={orderLink()} target="_blank" rel="noopener" className="link-underline">
+                <a href={orderLink()} target="_blank" rel="noopener" className="link-underline max-md:inline-flex max-md:min-h-11 max-md:items-center">
                   WhatsApp · {PHONES.whatsapp.display}
                 </a>
               </li>
               <li>
-                <a href={callLink} className="link-underline">
+                <a href={callLink} className="link-underline max-md:inline-flex max-md:min-h-11 max-md:items-center">
                   Appel · {PHONES.call.display}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${EMAIL}`} className="link-underline">
+                <a href={`mailto:${EMAIL}`} className="link-underline max-md:inline-flex max-md:min-h-11 max-md:items-center">
                   {EMAIL}
                 </a>
               </li>
@@ -74,21 +75,14 @@ export function SiteFooter() {
             <ul className="mt-5 space-y-3 text-[0.9375rem]">
               <li>{LOCATION.label}</li>
               <li>
-                <a
-                  href={LOCATION.mapsUrl}
-                  target="_blank"
-                  rel="noopener"
-                  className="link-underline inline-flex items-center gap-1"
-                >
-                  Ouvrir dans Google Maps <ArrowUpRightIcon size={14} />
-                </a>
+                <LazyMap mode="preview" className="h-32 w-full max-w-[16rem] bg-cream/10" />
               </li>
             </ul>
             <nav aria-label="Pied de page" className="mt-8">
-              <ul className="space-y-2 text-[0.9375rem] text-cream/70">
+              <ul className="space-y-2 text-[0.9375rem] text-cream/70 max-md:space-y-0">
                 {NAV.map((item) => (
                   <li key={item.href}>
-                    <Link href={item.href} className="link-underline hover:text-cream">
+                    <Link href={item.href} className="link-underline hover:text-cream max-md:inline-flex max-md:min-h-11 max-md:min-w-11 max-md:items-center">
                       {item.label}
                     </Link>
                   </li>

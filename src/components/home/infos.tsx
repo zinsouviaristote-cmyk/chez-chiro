@@ -1,109 +1,73 @@
-import { DELIVERY_ZONES, HOURS, LOCATION, PHONES } from "@/lib/site";
-import { callLink, orderLink } from "@/lib/whatsapp";
-import { formatFcfa } from "@/lib/utils";
-import { ArrowUpRightIcon, CashIcon, ClockIcon, MapPinIcon, PhoneIcon, TruckIcon, WhatsAppIcon } from "../icons";
-import { Reveal, Stagger, StaggerItem } from "../motion/reveal";
-import { SectionHeading } from "./section-heading";
+import type { ComponentType, SVGProps } from "react";
+import { HOURS, LOCATION, PHONES } from "@/lib/site";
+import { CashIcon, ClockIcon, MapPinIcon, TruckIcon } from "../icons";
+import { LazyMap } from "../map/lazy-map";
+import { AnimatedGroup, InView } from "../motion/in-view";
+import { DeliveryFinder } from "./delivery-finder";
+import { OrderButtons } from "./order-buttons";
 
+type Fact = { Icon: ComponentType<SVGProps<SVGSVGElement> & { size?: number }>; label: string; value: string; detail: string };
+
+const FACTS: Fact[] = [
+  { Icon: ClockIcon, label: "Horaires", value: `${HOURS.open}, ${HOURS.days.toLowerCase()}`, detail: `${HOURS.delivery}` },
+  { Icon: TruckIcon, label: "Zone de livraison", value: "Cotonou et Abomey-Calavi", detail: "Frais selon le quartier" },
+  { Icon: CashIcon, label: "Paiement", value: "À la livraison", detail: "Vous réglez le livreur à la réception" },
+];
+
+/** Hours, delivery area, payment, the map, delivery fees, and the order buttons that end the page. */
 export function Infos() {
   return (
     <section id="infos" aria-labelledby="infos-title" className="section">
       <div className="container-site">
-        <SectionHeading
-          id="infos-title"
-          title="Où, quand, combien."
-          lead="On livre partout à Cotonou et à Abomey-Calavi, tous les jours. Vous payez à la livraison."
-        />
+        <InView>
+          <h2 id="infos-title" className="text-heading text-ink">
+            Infos pratiques
+          </h2>
+        </InView>
 
-        <Stagger as="ul" className="mt-8 grid gap-4 md:mt-12 md:grid-cols-3 md:gap-6">
-          <StaggerItem as="li" className="rounded-lg bg-surface p-6 sm:p-8">
-            <ClockIcon size={24} className="text-ink" />
-            <h3 className="mt-6 text-small font-bold text-ink-soft">Horaires</h3>
-            <p className="mt-1 text-heading text-ink">{HOURS.open}</p>
-            <p className="mt-1 font-bold text-ink">{HOURS.days}</p>
-            <p className="mt-3 text-small text-ink-soft">{HOURS.delivery}.</p>
-          </StaggerItem>
+        <AnimatedGroup
+          as="ul"
+          className="mt-6 divide-y divide-line border-y border-line md:mt-10 md:grid md:grid-cols-3 md:divide-x md:divide-y-0"
+        >
+          {FACTS.map(({ Icon, label, value, detail }) => (
+            <li key={label} className="flex gap-4 py-5 md:px-8 md:py-7 md:first:pl-0 md:last:pr-0">
+              <Icon size={22} className="mt-0.5 shrink-0 text-ink" />
+              <div>
+                <h3 className="text-small text-ink-soft">{label}</h3>
+                <p className="mt-0.5 text-subheading font-bold text-ink">{value}</p>
+                <p className="mt-0.5 text-small text-ink-soft">{detail}</p>
+              </div>
+            </li>
+          ))}
+        </AnimatedGroup>
 
-          <StaggerItem as="li" className="rounded-lg bg-brown p-6 text-cream sm:p-8">
-            <MapPinIcon size={24} className="text-orange" />
-            <h3 className="mt-6 text-small font-bold text-cream/70">Nous trouver</h3>
-            <p className="mt-1 text-heading">Godomey</p>
-            <p className="mt-1 font-bold">Abomey-Calavi</p>
-            <a href={LOCATION.mapsUrl} target="_blank" rel="noopener" className="btn btn-outline-light btn-sm mt-6">
-              Ouvrir dans Google Maps <ArrowUpRightIcon size={16} />
-            </a>
-          </StaggerItem>
-
-          <StaggerItem as="li" className="rounded-lg bg-surface p-6 sm:p-8">
-            <CashIcon size={24} className="text-ink" />
-            <h3 className="mt-6 text-small font-bold text-ink-soft">Commander</h3>
-            <p className="mt-2 space-y-1">
-              <a href={orderLink()} target="_blank" rel="noopener" className="flex min-h-11 items-center gap-2 font-bold text-ink">
-                <WhatsAppIcon size={18} /> <span className="link-underline">{PHONES.whatsapp.display}</span>
-              </a>
-              <a href={callLink} className="flex min-h-11 items-center gap-2 font-bold text-ink">
-                <PhoneIcon size={18} /> <span className="link-underline">{PHONES.call.display}</span>
-              </a>
+        <div className="mt-8 grid gap-6 md:mt-12 md:grid-cols-12">
+          <InView className="flex flex-col md:col-span-7">
+            <LazyMap mode="full" className="h-[19rem] md:h-auto md:min-h-[30rem] md:flex-1" />
+            <p className="mt-3 flex items-center gap-2 text-small text-ink-soft">
+              <MapPinIcon size={16} className="shrink-0 text-ink" />
+              <span>
+                <span className="font-bold text-ink">Restaurant Chez Chiro</span> · {LOCATION.label}
+              </span>
             </p>
-            <p className="mt-3 text-small text-ink-soft">Paiement à la livraison.</p>
-          </StaggerItem>
-        </Stagger>
+          </InView>
+          <InView delay={0.08} className="md:col-span-5">
+            <DeliveryFinder />
+          </InView>
+        </div>
 
-        <Reveal className="mt-16 md:mt-24">
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="flex items-center gap-2 text-small font-bold text-ink-soft">
-                <TruckIcon size={20} />
-                Zones et frais de livraison
-              </p>
-              <h3 className="mt-2 text-heading-sm text-ink md:text-[1.75rem] md:leading-[1.29]">
-                Standard ou premium, à vous de voir.
-              </h3>
-            </div>
-            <p className="max-w-sm text-small text-ink-soft">
-              Temps estimés selon votre zone. Précisez votre quartier dans le message WhatsApp.
+        <InView className="mt-10 rounded-lg bg-brown p-6 text-cream sm:p-8 md:mt-14 md:flex md:items-start md:justify-between md:gap-10 md:p-10">
+          <div>
+            <h3 className="text-heading-sm md:text-heading">Commandez maintenant</h3>
+            <p className="mt-2 flex flex-col text-small text-cream/72 sm:flex-row sm:gap-4">
+              <span className="whitespace-nowrap">WhatsApp {PHONES.whatsapp.display}</span>
+              <span className="whitespace-nowrap">Appel {PHONES.call.display}</span>
             </p>
           </div>
-
-          <div className="mt-8 overflow-hidden rounded-lg border border-line">
-            <div className="hidden grid-cols-12 gap-4 bg-surface px-6 py-3 text-caption font-bold uppercase tracking-[0.08em] text-ink-soft md:grid">
-              <span className="col-span-6">Zone</span>
-              <span className="col-span-3">Standard</span>
-              <span className="col-span-3">Premium</span>
-            </div>
-            <ul className="divide-y divide-line">
-              {DELIVERY_ZONES.map((z) => (
-                <li
-                  key={z.zone}
-                  className="grid gap-4 px-4 py-5 md:grid-cols-12 md:items-center md:px-6"
-                >
-                  <div className="flex gap-4 md:col-span-6">
-                    <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-brown text-body font-bold text-cream">
-                      {z.zone}
-                    </span>
-                    <p className="text-small text-ink">{z.areas}</p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-3 md:col-span-6 md:gap-4">
-                    <p className="rounded-lg bg-surface px-3.5 py-2.5 md:bg-transparent md:p-0">
-                      <span className="block text-caption font-bold uppercase tracking-[0.08em] text-ink-soft md:hidden">
-                        Standard
-                      </span>
-                      <span className="font-bold tabular-nums text-ink">{formatFcfa(z.standard.price)}</span>
-                      <span className="block text-small text-ink-soft">{z.standard.time}</span>
-                    </p>
-                    <p className="rounded-lg bg-surface px-3.5 py-2.5 md:bg-transparent md:p-0">
-                      <span className="block text-caption font-bold uppercase tracking-[0.08em] text-ink-soft md:hidden">
-                        Premium
-                      </span>
-                      <span className="font-bold tabular-nums text-ink">{formatFcfa(z.premium.price)}</span>
-                      <span className="block text-small text-ink-soft">{z.premium.time}</span>
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
+          <div className="mt-6 md:mt-0">
+            <OrderButtons />
           </div>
-        </Reveal>
+        </InView>
       </div>
     </section>
   );

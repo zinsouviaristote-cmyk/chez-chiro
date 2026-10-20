@@ -35,10 +35,10 @@ export function SiteHeader() {
       <header
         data-scrolled={scrolled}
         className={cn(
-          "sticky top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-500",
+          "sticky top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-500",
           scrolled
-            ? "bg-cream/88 shadow-[0_1px_0_0_var(--color-line)] backdrop-blur-xl"
-            : "bg-cream",
+            ? "border-line bg-cream/88 backdrop-blur-xl"
+            : "border-transparent bg-cream",
         )}
       >
         <div
@@ -47,7 +47,7 @@ export function SiteHeader() {
             scrolled ? "h-16" : "h-[4.5rem] md:h-20",
           )}
         >
-          <Link href="/" className="relative shrink-0" aria-label="Chez Chiro — accueil">
+          <Link href="/" className="relative flex min-h-11 shrink-0 items-center" aria-label="Chez Chiro — accueil">
             <Image
               src={logo}
               alt="Restaurant Chez Chiro"

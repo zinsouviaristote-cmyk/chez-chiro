@@ -11,12 +11,22 @@ const VARIANTS = {
   exit: { y: "-30%", opacity: 0 },
 };
 
+/** The word in orange (#F2730D, same weight as the headline), the comma in the headline colour. */
+function Word({ word }: { word: string }) {
+  return (
+    <>
+      <span className="text-spark">{word}</span>,
+    </>
+  );
+}
+
 /**
  * The rotating word inside the hero headline (its own centred line).
  * - The server HTML shows the first word, so the headline is complete at first paint.
  * - TextLoop (and Motion) load once the page has settled (see whenSettled).
  * - Every word is laid out invisibly in the same grid cell, so the line keeps
  *   the size of the longest word and the centred layout never jumps.
+ * - The comma belongs to each word, so it always sits right after it.
  * - Pauses off-screen; never rotates with prefers-reduced-motion.
  */
 export function HeroWordLoop({ words }: { words: string[] }) {
@@ -50,18 +60,20 @@ export function HeroWordLoop({ words }: { words: string[] }) {
     <span ref={ref} className="grid justify-items-center whitespace-nowrap">
       {words.map((w) => (
         <span key={w} className="invisible col-start-1 row-start-1">
-          {w}
+          <Word word={w} />
         </span>
       ))}
       <span data-loop className="col-start-1 row-start-1 w-full">
         {Loop ? (
           <Loop interval={2.6} trigger={inView} variants={VARIANTS} transition={{ duration: 0.5, ease: EASE }}>
             {words.map((w) => (
-              <span key={w}>{w}</span>
+              <span key={w}>
+                <Word word={w} />
+              </span>
             ))}
           </Loop>
         ) : (
-          words[0]
+          <Word word={words[0]} />
         )}
       </span>
     </span>

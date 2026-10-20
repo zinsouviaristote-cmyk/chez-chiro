@@ -6,15 +6,15 @@ import type { TikTokVideo } from "@/lib/tiktok";
 import { PlayIcon, TikTokIcon } from "../icons";
 
 /**
- * Vertical video in a phone frame. Only the cover image loads with the page;
+ * Vertical video card (8px radius, like every image on the site). Only the cover image loads with the page;
  * the TikTok player (and its scripts) loads after a tap.
  */
 export function TikTokPhone({ video }: { video: TikTokVideo }) {
   const [playing, setPlaying] = useState(false);
 
   return (
-    <div className="group relative rounded-[2rem] bg-[#1b0a03] p-2 ring-1 ring-cream/10">
-      <div className="relative aspect-[9/16] overflow-hidden rounded-[1.5rem] bg-black">
+    <div className="group relative">
+      <div className="relative aspect-[9/16] overflow-hidden rounded-lg bg-black">
         {playing ? (
           <iframe
             src={`https://www.tiktok.com/player/v1/${video.id}?autoplay=1&music_info=0&description=0&rel=0&native_context_menu=0`}
@@ -53,7 +53,6 @@ export function TikTokPhone({ video }: { video: TikTokVideo }) {
           </button>
         )}
       </div>
-      <span aria-hidden className="absolute left-1/2 top-3.5 h-1.5 w-14 -translate-x-1/2 rounded-full bg-black/60" />
     </div>
   );
 }

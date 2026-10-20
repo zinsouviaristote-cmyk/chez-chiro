@@ -21,7 +21,7 @@ The page should feel calm, direct and useful: big, bold, left-aligned headlines;
 | `--color-cream` | `#FDFBF1` | Page canvas. | `#FFFFFF` |
 | `--color-surface` | `#F5F1E3` | The one soft surface: cards, alternating bands, table headers. Derived from the cream (same hue, darker, less saturated). | `#F6F6F6` |
 | `--color-line` | `#E3DDCD` | 1px hairlines on cream and on the soft surface. | `#E2E2E2` |
-| `--color-spark` | `#F2730D` | Small highlights only: rating stars, a dot. Never text, never a fill larger than an icon. | — |
+| `--color-spark` | `#F2730D` | Small highlights only: rating stars, a dot. One text exception: the rotating word of the hero headline (display size on the brown overlay, 5.8:1). Never body text, never a fill larger than an icon. | — |
 
 On brown surfaces: text is cream (`#FDFBF1`), secondary text cream at 72%, hairlines cream at 15%.
 
@@ -51,7 +51,8 @@ No serif. No italics in headings, no "accent word in another style" pattern.
 - Letter-spacing normal. Slightly negative only at display sizes (−0.02em at 40–72px).
 - Left-aligned. Body copy is never centred.
 - Uppercase only for very short labels: badges, table headers, footer column labels. No uppercase eyebrow above section headings.
-- Copy: short, concrete, confident French. Headlines say something specific about Chez Chiro, never a slogan. No rhetorical questions, no emoji in headings. Each fact (TikTok numbers, Google rating, phone numbers, Barbecue d'Or) is stated once on the page; the hero proof bar is the one exception (summary of sections 4 and 6).
+- Copy: short, concrete, confident French. Headlines say something specific about Chez Chiro, never a slogan. No rhetorical questions, no emoji in headings.
+- Where facts appear: phone numbers only in the header, section 7 and the footer. Google rating only in the hero proof bar and section 6. TikTok audience and Barbecue d'Or in the hero proof bar and section 4. Nothing else is repeated.
 - Weights: 400 body, 500 subheadings, 700 headings, buttons and prices.
 - `text-wrap: balance` on headings, `text-wrap: pretty` on paragraphs.
 - Numbers in tables and prices use tabular figures.
@@ -98,7 +99,7 @@ No serif. No italics in headings, no "accent word in another style" pattern.
 - Full-width on mobile (< 640px), auto width above.
 - Icons inside buttons: 20px, 10px gap, before the label.
 - Press: scale 0.98. No lift, no shadow.
-- Header CTAs keep their pill shape (the only pill buttons on the site).
+- Header CTAs keep their pill shape (the only pill buttons on the site), with 19px labels like every orange button.
 
 ### Links
 
@@ -136,7 +137,9 @@ Quick and premium. Tools: motion-primitives components (`TextEffect`, `TextLoop`
 - Implementation in this repo:
   - `TextLoop` and `SlidingNumber`: the motion-primitives components, on `m` + `LazyMotion`, loaded lazily.
   - `InView` and `AnimatedGroup` (`src/components/motion/in-view.tsx`): same roles and presets ("slide", "fade"), run by CSS and one shared IntersectionObserver, so sections stay Server Components.
-  - `Carousel` (`src/components/ui/carousel.tsx`): the motion-primitives API on native scroll-snap (native swipe on phones, no animation library).
+  - `Carousel` (`src/components/ui/carousel.tsx`): the motion-primitives API on native scroll-snap (native swipe on phones, no animation library). Optional `autoPlay` (reviews: one card every 6 s, loops), paused on hover, focus and touch, off-screen and with reduced motion, plus a pause button.
+  - `AnimatedBackground` (`src/components/ui/animated-background.tsx`): the motion-primitives API, the active pill slides with a CSS transform.
+  - Map (`src/components/map/`): Leaflet + OpenStreetMap tiles, imported with its CSS only when the section comes within 400px of the viewport.
 - Only interactive parts are client components: TextLoop, carousels, countdown, video players, map. Sections are Server Components.
 
 ---
@@ -157,13 +160,13 @@ Header and footer keep their layout and content.
 
 | # | Section | Contents | Surface |
 |---|---|---|---|
-| 1 | **Hero + proof bar** | Full-bleed food photo, dark brown overlay, slow Ken Burns. Centred headline on three lines: "Votre" / rotating moment (`TextLoop`: déjeuner, dîner, repas de famille, repas d'équipe) / "signé Chez Chiro.", one supporting line, "Commander sur WhatsApp" + "Voir la carte" (cream fill). Proof bar along the bottom edge: 4,4/5 Google (54 avis) · 2,8 M TikTok · 562 K Facebook · Barbecue d'Or 2022. Absorbs the old stats block ("Toute une communauté à table") and the dish marquee. | Photo |
+| 1 | **Hero + proof bar** | Full-bleed food photo, dark brown overlay, slow Ken Burns. Centred headline on three lines: "Votre" / rotating moment in spark orange, same weight, followed by a comma (`TextLoop`: déjeuner, dîner, repas de famille, repas d'équipe) / "signé Chez Chiro.", one supporting line (18px), "Commander sur WhatsApp" + "Voir la carte" (cream fill). Proof bar along the bottom edge, cells centred: 4,4/5 Google (54 avis) · 2,8 M TikTok · 562 K Facebook · Barbecue d'Or 2022. | Photo |
 | 2 | **Nos plats** | Merges "Les incontournables" (incl. Sauce Gbota Royal and Pack Banger) and the tabbed menu preview. | Cream / soft surface |
 | 3 | **Commander en 3 étapes** | Choose → send the prefilled WhatsApp → pay on delivery. | Cream |
 | 4 | **Chez Chiro sur TikTok** | Merges the TikTok videos and "Notre histoire" (10 years, Barbecue d'Or 2022). | Brown |
 | 5 | **La Manifestation** | 4, 5 & 6 Dec 2026, poster, partnerships contact. | Cream / brown |
-| 6 | **Avis** | Real Google reviews, quoted word for word, rating summary (static). | Soft surface |
-| 7 | **Infos pratiques** | Hours, address, interactive map, delivery zones and prices, call + WhatsApp. Absorbs the final "Une petite faim ?" CTA. | Cream |
+| 6 | **Avis** | "Ce que nos clients écrivent sur Google". Rating block (4,4 in big numerals, partial fifth star, "54 avis Google", Google logo, no distribution bars), Fely N.'s sauce gbota review in large type, then a carousel of five other 5-star reviews (autoplay, swipe). Quotes word for word. Link to all reviews on Google. | Soft surface |
+| 7 | **Infos pratiques** | Three facts in one row (hours, delivery area, payment on delivery). Leaflet map with the logo pin: a click (not a drag) opens the Google Maps listing; no scroll-wheel zoom, one-finger drag scrolls the page on phones. Delivery fees: "Votre quartier" search over every neighbourhood of the zone data, zone chips A–E, "Quartier non listé ? Demandez sur WhatsApp". Ends with a brown order block: WhatsApp (orange) + Appeler, the two numbers; the WhatsApp message includes the neighbourhood picked above. Absorbs the old final CTA. The footer shows a small static preview of the same map. | Cream |
 
 Mobile: sticky brown bar with "Commander sur WhatsApp" + call, shown once the hero has scrolled away.
 

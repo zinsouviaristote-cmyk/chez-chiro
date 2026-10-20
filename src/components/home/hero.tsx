@@ -23,12 +23,12 @@ const PROOF = [
   { value: "Barbecue d'Or", label: "Lauréat 2022", Icon: TrophyIcon },
 ];
 
-// Hairlines: 2 × 2 grid on mobile, 4 columns from md.
+// Hairlines: 2 × 2 grid on mobile, 4 columns from md. Content centred, like the hero.
 const CELL = [
-  "pr-4 border-r md:pr-6",
-  "pl-4 md:px-6 md:border-r",
-  "pr-4 border-r border-t md:border-t-0 md:px-6",
-  "pl-4 border-t md:border-t-0 md:pl-6",
+  "border-r",
+  "md:border-r",
+  "border-r border-t md:border-t-0",
+  "border-t md:border-t-0",
 ];
 
 const delay = (d: number) => ({ "--d": `${d}s` }) as CSSProperties;
@@ -65,7 +65,7 @@ export function Hero() {
     <section
       data-hero
       aria-labelledby="hero-title"
-      className="relative isolate flex min-h-[calc(100svh-6.75rem)] flex-col overflow-hidden bg-brown text-cream md:min-h-[85vh]"
+      className="relative isolate flex min-h-[calc(100svh-7.3125rem)] flex-col overflow-hidden bg-brown text-cream md:min-h-[85vh]"
     >
       <div className="absolute inset-0 -z-10">
         <div className="ken-burns absolute inset-0">
@@ -130,9 +130,12 @@ export function Hero() {
       <div className="hero-fade border-t border-cream/15 bg-brown/60" style={delay(0.6)}>
         <ul aria-label="Chez Chiro en quelques chiffres" className="container-site grid grid-cols-2 md:grid-cols-4">
           {PROOF.map(({ value, label, Icon, icon }, i) => (
-            <li key={label} className={cn("flex flex-col gap-1 border-cream/15 py-4 md:py-6", CELL[i])}>
+            <li
+              key={label}
+              className={cn("flex flex-col items-center gap-1 border-cream/15 px-2 py-4 text-center md:px-6 md:py-6", CELL[i])}
+            >
               <span className="text-[1.25rem] font-bold leading-tight md:text-heading-sm">{value}</span>
-              <span className="flex items-center gap-1.5 text-small text-cream/85">
+              <span className="flex items-center justify-center gap-1.5 text-small text-cream/85">
                 <Icon size={15} className={cn("shrink-0", icon)} />
                 {label}
               </span>

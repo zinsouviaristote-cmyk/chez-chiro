@@ -54,10 +54,7 @@ export function EventSection() {
           </AnimatedGroup>
 
           <InView className="mt-8 md:mt-10">
-            <p className="text-small font-bold text-ink-soft">Avant l&apos;ouverture</p>
-            <div className="mt-3">
-              <EventCountdown />
-            </div>
+            <EventCountdown />
           </InView>
 
           <InView className="mt-8 border-t border-line pt-8 md:mt-10">

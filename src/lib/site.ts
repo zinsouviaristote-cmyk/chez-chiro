@@ -40,6 +40,9 @@ export const LOCATION = {
   label: "Godomey, Abomey-Calavi",
   area: "Cotonou & Abomey-Calavi",
   mapsUrl: "https://maps.app.goo.gl/AkUQMPDwxWUsRAep7",
+  // Pin of the Google Maps listing "Restaurant chez chiro" (plus code
+  // C86F+QH Godomey), research/BRIEF.md §4.1. Exact spot à confirmer.
+  coords: [6.4119209, 2.3239062] as [number, number],
 };
 
 export const SOCIALS = {
@@ -81,38 +84,61 @@ export const EVENT = {
 // Delivery rates, rebuilt as text from the site's poster
 // "Découvrez nos nouveaux tarifs de livraisons avec les temps estimés".
 // Spellings normalised — à confirmer avec la propriétaire.
-export const DELIVERY_ZONES = [
+export type DeliveryZone = {
+  zone: "A" | "B" | "C" | "D" | "E";
+  /** Neighbourhoods as listed on the poster (zone A: the two cities). */
+  areas: string[];
+  /** Extra precision from the poster, shown with the zone. */
+  note?: string;
+  standard: { price: number; time: string };
+  premium: { price: number; time: string };
+};
+
+export const DELIVERY_ZONES: DeliveryZone[] = [
   {
     zone: "A",
-    areas: "Cotonou et Calavi (hors quartiers des zones B à E)",
+    areas: ["Cotonou", "Abomey-Calavi"],
+    note: "Cotonou et Calavi, hors quartiers des zones B à E",
     standard: { price: 500, time: "45 à 90 min" },
     premium: { price: 1000, time: "30 à 50 min" },
   },
   {
     zone: "B",
-    areas: "Akassato, Zoundja, Togba, Cococodji, Bazounkpa, Gbodjè, Atrokpocodji",
+    areas: ["Akassato", "Zoundja", "Togba", "Cococodji", "Bazounkpa", "Gbodjè", "Atrokpocodji"],
     standard: { price: 700, time: "55 à 115 min" },
     premium: { price: 1200, time: "45 à 65 min" },
   },
   {
     zone: "C",
-    areas: "Kansoukpa",
+    areas: ["Kansoukpa"],
     standard: { price: 800, time: "75 à 120 min" },
     premium: { price: 1300, time: "60 à 80 min" },
   },
   {
     zone: "D",
-    areas: "Adjagbo, Ouèdo, Hêvié, Pahou, Akpakpa, Togbin",
+    areas: ["Adjagbo", "Ouèdo", "Hêvié", "Pahou", "Akpakpa", "Togbin"],
     standard: { price: 1000, time: "90 à 130 min" },
     premium: { price: 1500, time: "60 à 90 min" },
   },
   {
     zone: "E",
-    areas: "Glo, Ekpè, Djeffa",
+    areas: ["Glo", "Ekpè", "Djeffa"],
     standard: { price: 1500, time: "95 à 135 min" },
     premium: { price: 2000, time: "60 à 95 min" },
   },
 ];
+
+// The poster's own spellings (and the short "Calavi"), so a search finds the
+// neighbourhood whichever way it is typed.
+export const AREA_ALIASES: Record<string, string[]> = {
+  "Abomey-Calavi": ["Calavi"],
+  Bazounkpa: ["Bazounpka"],
+  Atrokpocodji: ["Atropkocodji"],
+  Kansoukpa: ["Kansoupka"],
+  Ouèdo: ["Ouedo"],
+  Akpakpa: ["Apkapka"],
+  Ekpè: ["Epkè"],
+};
 
 export const NAV = [
   { href: "/menu", label: "Le menu" },
