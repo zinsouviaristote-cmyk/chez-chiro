@@ -1,16 +1,7 @@
 import { AREA_ALIASES, DELIVERY_ZONES, type DeliveryZone } from "./site";
+import { normalize } from "./utils";
 
 export type Area = { name: string; zone: DeliveryZone; keys: string[] };
-
-/** "Hêvié" → "hevie", "Abomey-Calavi" → "abomey calavi": no accents, no case, no punctuation. */
-export function normalize(value: string) {
-  return value
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
-}
 
 /** Every neighbourhood of the delivery zones, with its zone and search keys (name + poster spellings). */
 export const AREAS: Area[] = DELIVERY_ZONES.flatMap((zone) =>

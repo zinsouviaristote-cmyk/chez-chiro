@@ -36,3 +36,13 @@ export function formatCompact(value: number) {
   }
   return value.toString();
 }
+
+/** "Hêvié" → "hevie", "Abomey-Calavi" → "abomey calavi": no accents, no case, no punctuation. */
+export function normalize(value: string) {
+  return value
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}

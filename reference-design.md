@@ -162,7 +162,7 @@ Header and footer keep their layout and content.
 |---|---|---|---|
 | 1 | **Hero + proof bar** | Full-bleed food photo, dark brown overlay, slow Ken Burns. Centred headline on three lines: "Votre" / rotating moment in spark orange, same weight, followed by a comma (`TextLoop`: déjeuner, dîner, repas de famille, repas d'équipe) / "signé Chez Chiro.", one supporting line (18px), "Commander sur WhatsApp" + "Voir la carte" (cream fill). Proof bar along the bottom edge, cells centred: 4,4/5 Google (54 avis) · 2,8 M TikTok · 562 K Facebook · Barbecue d'Or 2022. | Photo |
 | 2 | **Nos plats** | Merges "Les incontournables" (incl. Sauce Gbota Royal and Pack Banger) and the tabbed menu preview. | Cream / soft surface |
-| 3 | **Commander en 3 étapes** | Choose → send the prefilled WhatsApp → pay on delivery. | Cream |
+| 3 | **Commander en 3 étapes** | Vertical timeline (choose → send the prefilled WhatsApp → pay on delivery) + CTA, next to a believable WhatsApp conversation as tall as the timeline: brown header (logo avatar, name, number; no status), cream-tinted chat, the customer’s prefilled message (light WhatsApp green, time, double check), “typing…”, the restaurant’s generic reply (step 3: total and delivery confirmed, nothing invented), an input bar whose orange send button opens WhatsApp. Plays once in view (~3.4 s, CSS) and lights up the matching step; static with reduced motion. | Soft surface |
 | 4 | **Chez Chiro sur TikTok** | Merges the TikTok videos and "Notre histoire" (10 years, Barbecue d'Or 2022). | Brown |
 | 5 | **La Manifestation** | 4, 5 & 6 Dec 2026, poster, partnerships contact. | Cream / brown |
 | 6 | **Avis** | "Ce que nos clients écrivent sur Google". Rating block (4,4 in big numerals, partial fifth star, "54 avis Google", Google logo, no distribution bars), Fely N.'s sauce gbota review in large type, then a carousel of five other 5-star reviews (autoplay, swipe). Quotes word for word. Link to all reviews on Google. | Soft surface |
@@ -172,7 +172,18 @@ Mobile: sticky brown bar with "Commander sur WhatsApp" + call, shown once the he
 
 ---
 
-## 8. Do / don't
+## 8. Menu page (/menu)
+
+Uber Eats’ store page as the structural reference.
+
+- **Store header:** wide banner (8px radius from md, full-bleed on phones), logo tile overlapping its lower edge, “Chez Chiro” (40 → 48px, 700), one meta line (4,4 ★ (54 avis Google) · Livraison dès 500 FCFA · 9h–20h · Paiement à la livraison; a wrapped line never starts with a separator), “Rechercher un plat” (live, accent-insensitive; the empty state offers to ask on WhatsApp).
+- **Category navigation:** sticky under the header, horizontal scroll on phones, pill tabs with the active one filled brown (`AnimatedBackground`), following the scroll. First category “Populaires”: Sauce Gbota Royal, the four homepage classics, Pack Banger.
+- **Item cards:** 1 column on phones, 2 from md. 1px hairline, 8px radius, 16px padding, no shadow; hover = soft surface + thumbnail zoom. Name (bold), description clamped to 2 lines (precisions like “la tête de mouton” move here), price on its own line (“dès 3 000 FCFA”), price notes in caption. A square 112px thumbnail on the right only for a real photo whose watermark is not visible; otherwise the text takes the width. “Signature” badge on Sauce Gbota Royal only.
+- **Ordering:** the whole card and its round orange “+” add the dish to an order (localStorage, no account); the “+” then becomes a brown − n + stepper. A “Votre commande (n)” bar (bottom on phones, floating from md) opens a drawer (native `<dialog>`: bottom sheet on phones, side panel from md) with quantities, an indicative “à partir de” total (delivery excluded, confirmed by Chez Chiro) and one “Envoyer la commande sur WhatsApp” button: every dish with its quantity and subtotal, a neighbourhood line, the indicative total. Empty order: the usual WhatsApp + call bar on phones. Homepage dish links still open WhatsApp directly.
+
+---
+
+## 9. Do / don't
 
 **Do**
 - One primary orange button per block.

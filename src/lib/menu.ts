@@ -1,3 +1,5 @@
+import { formatFcfa } from "./utils";
+
 // Full menu, rebuilt from research/data/menu.json (chezchiro.com, 19 Oct 2026).
 // - Prices: the lowest published level, shown as "à partir de" when the dish
 //   has several levels (demo assumption, à confirmer).
@@ -97,7 +99,7 @@ export const MENU: MenuCategory[] = [
         name: "Riz au gras",
         description:
           "Avec poulet bicyclette, lapin braisé, mouton braisé, aileron braisé ou poisson (silivi ou tilapia).",
-        note: "Avec tilapia : à partir de 3 500 FCFA.",
+        note: "Avec tilapia : dès 3 500 FCFA",
         price: 3000,
         levels: [3000, 3500, 4000, 6000],
       },
@@ -131,7 +133,7 @@ export const MENU: MenuCategory[] = [
         name: "Attiéké",
         description:
           "Avec poulet bicyclette, lapin, mouton ou aileron braisés, aloco poisson (silivi ou tilapia) ou croupion de dinde.",
-        note: "Avec silivi : à partir de 3 000 FCFA · avec tilapia : à partir de 4 000 FCFA.",
+        note: "Avec silivi : dès 3 000 FCFA · avec tilapia : dès 4 000 FCFA",
         price: 3000,
         levels: [3000, 3500, 4000, 5000, 6000],
       },
@@ -140,7 +142,7 @@ export const MENU: MenuCategory[] = [
         name: "Wassa-wassa",
         description:
           "Avec poulet bicyclette, lapin, mouton ou aileron braisés, poisson (silivi ou tilapia) ou croupion de dinde.",
-        note: "Avec tilapia : à partir de 3 500 FCFA.",
+        note: "Avec tilapia : dès 3 500 FCFA",
         price: 3000,
         levels: [3000, 3500, 4000, 5000, 6000],
       },
@@ -172,7 +174,7 @@ export const MENU: MenuCategory[] = [
         name: "Frites avec aloco",
         description:
           "Avec poulet bicyclette, lapin, mouton ou aileron braisés, poisson (silivi ou tilapia) ou croupion de dinde.",
-        note: "Avec tilapia : à partir de 4 000 FCFA.",
+        note: "Avec tilapia : dès 4 000 FCFA",
         price: 3000,
         levels: [3000, 3500, 4000, 5000, 6000],
       },
@@ -297,6 +299,23 @@ export const MENU: MenuCategory[] = [
 
 export const ALL_DISHES: Dish[] = [PACK_BANGER, ...MENU.flatMap((c) => c.dishes)];
 
-export function priceLabel(dish: Pick<Dish, "price" | "single">) {
-  return dish.single ? "" : "à partir de";
+/** "dès 3 000 FCFA", or "6 000 FCFA" for a single-price item. */
+export function priceText(dish: Pick<Dish, "price" | "single">) {
+  return dish.single ? formatFcfa(dish.price) : `dès ${formatFcfa(dish.price)}`;
 }
+
+/** Name as written in WhatsApp messages: "Sauce Gbota Royal, la tête de mouton". */
+export function orderName(dish: Pick<Dish, "name" | "aside">) {
+  return dish.aside ? `${dish.name}, ${dish.aside}` : dish.name;
+}
+
+/** Card description: the precision first ("La tête de mouton."), then the description. */
+export function cardDescription(dish: Pick<Dish, "aside" | "description">) {
+  const aside = dish.aside ? `${dish.aside.charAt(0).toUpperCase()}${dish.aside.slice(1)}. ` : "";
+  return `${aside}${dish.description}`;
+}
+
+/** "Populaires" on /menu: the house signature, the four homepage classics and the pack. */
+export const POPULAR_IDS = ["gbota-royal", "attieke", "poulet-bicyclette", "riz-petit-pois", "tapioriz", "pack-banger"];
+
+export const dishById = (id: string) => ALL_DISHES.find((d) => d.id === id);

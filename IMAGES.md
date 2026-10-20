@@ -1,4 +1,4 @@
-# IMAGES — Chez Chiro V2
+# IMAGES — Chez Chiro V2 (accueil + menu)
 
 Toutes les images du site sont de vraies photos de Chez Chiro ou de ses clients (site, back-office du menu, Google Maps, TikTok). Aucune photo de banque d'images, aucune image IA pour l'instant.
 
@@ -22,7 +22,7 @@ Toutes les images du site sont de vraies photos de Chez Chiro ou de ses clients 
 | 9 | Nos plats, offre Pack Banger | aucune (bloc typographique, pas d'emplacement réservé) | La photo du site est filigranée | — | 1600×1200 si on veut l'ajouter (le pack avec le sac cadeau) | **2** |
 | 10 | Chez Chiro sur TikTok, 4 vidéos | `tiktok-7558439966552935691.jpg`, `tiktok-7634944240405056786.jpg`, `tiktok-7595186991277296952.jpg`, `tiktok-7556231244745411851.jpg` | Couvertures publiques des 4 vidéos les plus vues (19/10/2026) | Cartes 9:16, la vidéo se charge au toucher | — | **3** : ce sont les vraies couvertures, à ne pas retoucher |
 | 11 | La Manifestation | `affiche-manifestation.jpg` | Affiche officielle (avatar TikTok, couverture Facebook) | Affichée comme une affiche | — | **3** : document officiel |
-| 12 | Infos pratiques, épingle de la carte | `logo-mark.png` (128×128, transparent) | Pictogramme découpé dans `logo.png` (montagnes, arc, fourchette, cuillère, sans le texte) | 42 px dans un rond crème cerclé d'orange, sur la carte et dans le pied de page | Pictogramme vectoriel (SVG) | **1** : à refaire à partir du logo vectoriel |
+| 12 | Épingle de la carte (Infos pratiques, pied de page), avatar de la conversation WhatsApp (« Commandez en trois étapes »), tuile logo de la page Menu | `logo-mark.png` (128×128, transparent) | Pictogramme découpé dans `logo.png` (montagnes, arc, fourchette, cuillère, sans le texte) | 32 à 88 px, sur fond crème | Pictogramme vectoriel (SVG) | **1** : à refaire à partir du logo vectoriel |
 
 Sans image, volontairement : section Avis (typographique, logo Google en SVG), section « Commander en 3 étapes ».
 La carte (section 7 et pied de page) n'est pas une image : ce sont les tuiles OpenStreetMap, chargées à l'approche.
@@ -33,28 +33,64 @@ Retirés en V2 (fichiers supprimés du site, originaux conservés dans `research
 
 ## Page Menu
 
-| # | Emplacement | Fichier | Source actuelle | Format à livrer | Priorité |
-|---|---|---|---|---|---|
-| 13 | Catégorie « Sauces & pâtes » | `pate-sauce-challenge.jpg` | Image de la vidéo TikTok 7595186991277296952, à 2,3 s. Plat non nommé à l'écran | 1600×1200 | **1** |
-| 14 | Catégorie « Riz & graines » | `plat-gras-poulet.jpg` | Photo client sur Google Maps (Lucrèce, janvier 2026). Plat non identifié avec certitude | 1600×1200 | **1** : photo d'un client, demander l'autorisation ou la remplacer avant la mise en ligne |
-| 15 | Catégorie « Braisés » | `poulet-bicyclette-detail.jpg` | Photo du menu chezchiro.com (comme le hero) | 1600×1200 | **2** |
-| 16 | Catégorie « Snacks » | `cassoulet-crop.jpg` | Photo du menu chezchiro.com n° 08 (`176302.jpg`), moitié basse (filigrane caché) | 1600×1200 | **2** |
-| 17 | Catégorie « Douceurs & jus » | `jus-bissap.jpg` | Photo du menu chezchiro.com n° 24 (`IMG-20231130-WA0039.jpg`) | 1600×1200 | **2** : fond en gazon artificiel, peu premium |
-| 18 | Lignes du menu (28 plats) | aucune photo par plat | Choix volontaire : 17 des 27 photos du menu portent un filigrane sur l'assiette | 1200×900 par plat si on ajoute des vignettes | **1** : demander les originaux sans filigrane |
+Structure inspirée d'Uber Eats : bannière, vignettes carrées sur les cartes des plats. Les grandes photos de catégorie ont été retirées ; celles qui correspondaient à un plat sont devenues des vignettes.
+
+| # | Emplacement | Fichier | Source actuelle | Affichage | Format à livrer | Priorité |
+|---|---|---|---|---|---|---|
+| 13 | Bannière de l'en-tête | `hero-poulet-desktop.jpg` (même fichier que le hero de l'accueil) | Photo du menu chezchiro.com, « Poulet bicyclette braisé Complet » | Desktop : 1200×288 (≈ 4:1), arrondi 8 px. Mobile : pleine largeur, 176 px de haut. Le logo chevauche le bas à gauche | 2400×800, sujet étalé sur toute la largeur et centré en hauteur (le recadrage mobile garde le milieu). Fichier à créer : `menu-banniere.jpg`, puis changer l'import dans `src/components/menu/store-header.tsx` | **1** |
+
+### Vignettes des plats (`src/assets/images/menu/`, carrés de 112 px affichés)
+
+Règle : une photo du menu n'est utilisée que si son filigrane ne se voit pas à cette taille. Pour les photos filigranées, on a gardé une zone du plat sans filigrane (recadrage indiqué). Format à livrer pour toutes : 800×800, plat centré, fond simple. Priorité **2** pour toutes.
+
+| Plat | Fichier | Source | Remarque |
+|---|---|---|---|
+| Sauce Gbota Royal | `gbota-royal.jpg` | Menu n° 09, recadré en bas de la marmite (filigranes « Chez Chiro » et numéro hors champ) | Recadrage serré : on voit sauce, piments, oignons. Même photo Higgsfield que l'emplacement n° 4 |
+| Sauce assrokouin bien garnie | `assrokouin.jpg` | Menu n° 10, moitié haute (numéro hors champ) | |
+| Télibo avec sauce mouton | `telibo-sauce-mouton.jpg` | Menu n° 11, moitié basse | |
+| Télibo | `telibo.jpg` | Menu n° 14, coin haut gauche | Photo d'origine très compressée |
+| Riz au gras | `riz-au-gras.jpg` | Menu n° 21, bas de la photo (poisson braisé) | |
+| Riz au gras aux petits pois | `riz-petit-pois.jpg` | Menu n° 12 (même recadrage que l'accueil) | Boulettes de viande, absentes de la description |
+| Entrée + résistant | `entree-resistant.jpg` | Menu n° 03, bas gauche (hors-d'œuvre) | |
+| Attiéké | `attieke.jpg` | Vidéo TikTok 7634944240405056786 (comme l'accueil) | Plat identifié à l'œil : à confirmer |
+| Pack Banger | `pack-banger.jpg` | Menu n° 06, plateau de droite | Une partie du pack seulement |
+| Poulet bicyclette braisé complet | `poulet-bicyclette.jpg` | Menu n° 17, sans filigrane | |
+| Frites avec aloco | `frites-aloco.jpg` | Menu n° 16, haut de la photo (bandeau filigrane hors champ) | |
+| Hors-d'œuvre à chaud | `hors-doeuvre.jpg` | Menu n° 13, bas de la photo | |
+| Chawarma standard | `chawarma-standard.jpg` | Menu n° 19, moitié droite | Le site d'origine utilise cette photo pour les deux chawarmas ; elle n'est mise que sur le standard |
+| Cassoulet avec pain ou gari | `cassoulet.jpg` | Menu n° 08, moitié basse | |
+| Bouillie : tapioriz au lait | `tapioriz.jpg` | Vidéo TikTok 7698019915499883794 | |
+| Yaourt | `yaourt.jpg` | Menu n° 23, sans filigrane | Bouteille sur gazon artificiel |
+| Dèguè couscous | `degue-couscous.jpg` | Menu n° 22, sans filigrane | Même bouteille que le yaourt (choix du site d'origine) |
+| Jus de bissap, de tamarin, de gingembre, d'ananas | `jus-bissap.jpg`, `jus-tamarin.jpg`, `jus-gingembre.jpg`, `jus-ananas.jpg` | Menu n° 24 à 27, sans filigrane | Gazon artificiel, peu premium |
+
+### Plats sans vignette (le texte prend toute la largeur) — priorité 2
+
+| Plat | Pourquoi | Format à livrer |
+|---|---|---|
+| Croupion de dinde | Menu n° 01 : le numéro reste visible sur toutes les zones du plat | 800×800 |
+| Mélange riz au gras et cassoulet | Menu n° 07 : idem | 800×800 |
+| Sauce mouton | Photo cassée sur le site d'origine (fichier de banque d'images) | 800×800 |
+| Wassa-wassa | Menu n° 18 : signature « Chez Chiro » et numéro sur tout le plat | 800×800 |
+| Portion de frites | Menu n° 20 : probablement une photo de banque d'images | 800×800 |
+| Dèguè mil | Aucune photo | 800×800 |
+| Chawarma du chef | Aucune photo propre (voir chawarma standard) | 800×800 |
+
+Retirés de la page Menu en V2 (fichiers supprimés du site, originaux dans `research/raw-images/`) : les cinq grandes photos de catégorie. `pate-sauce-challenge.jpg` (plat non identifié) et `plat-gras-poulet.jpg` (photo d'une cliente) ne sont plus utilisés nulle part : la question de l'autorisation ne se pose plus pour le site. `cassoulet-crop.jpg` et `jus-bissap.jpg` sont remplacés par leurs vignettes.
 
 ## Logo et icônes
 
 | # | Emplacement | Fichier | Source | Priorité |
 |---|---|---|---|---|
-| 19 | En-tête | `logo.png` | `research/raw-images/logo/logo-master-color-trimmed.png` (PNG réparé, 711×380) | **1** : il faut le fichier vectoriel (SVG/AI/PDF), à demander à la propriétaire ou à OWO EMPIRE |
-| 20 | Pied de page, menu mobile | `logo-reversed.png` | Même logo, parties anthracite passées en crème | **1** : à faire valider, puis refaire à partir du vectoriel |
-| 21 | Favicon, icône Apple | `src/app/icon.png`, `src/app/apple-icon.png` | Pictogramme du logo sur fond crème, 192 et 180 px | **2** |
+| 14 | En-tête | `logo.png` | `research/raw-images/logo/logo-master-color-trimmed.png` (PNG réparé, 711×380) | **1** : il faut le fichier vectoriel (SVG/AI/PDF), à demander à la propriétaire ou à OWO EMPIRE |
+| 15 | Pied de page, menu mobile | `logo-reversed.png` | Même logo, parties anthracite passées en crème | **1** : à faire valider, puis refaire à partir du vectoriel |
+| 16 | Favicon, icône Apple | `src/app/icon.png`, `src/app/apple-icon.png` | Pictogramme du logo sur fond crème, 192 et 180 px | **2** |
 
 ## À demander à la propriétaire (par ordre de priorité)
 
-1. Les photos originales du menu **sans filigrane**. Elles remplaceraient presque tout ce qui est en priorité 1.
+1. Les photos originales du menu **sans filigrane**. Elles remplaceraient presque tout ce qui est en priorité 1, et donneraient une vignette aux 7 plats qui n'en ont pas.
 2. Une vraie photo de la **Sauce Gbota Royal** (emplacement n° 4, déjà prêt dans le code).
-3. Le **logo vectoriel** (emplacements 12, 19, 20, 21).
+3. Le **logo vectoriel** (emplacements 12, 14, 15, 16).
 4. Une photo de **Chiro** en cuisine ou sur un stand. Elle n'apparaît nulle part.
 5. La photo originale de la **remise du Barbecue d'Or 2022**.
 6. Des photos du **lieu** s'il ouvre en décembre (vraies photos, pas le rendu de l'affiche).

@@ -18,7 +18,10 @@ npm run build && npm start
 - `src/lib/menu.ts`: the full menu with "à partir de" prices.
 - `src/lib/reviews.ts`: Google reviews, quoted word for word.
 - `src/lib/whatsapp.ts`: the prefilled WhatsApp messages.
-- `src/components/home/*`: the homepage sections. `src/app/menu/page.tsx` is the menu page.
+- `src/components/home/*`: the homepage sections.
+- `src/app/menu/page.tsx` + `src/components/menu/*`: the menu page (store header, search, sticky categories, item cards, order drawer).
+- `src/lib/cart-store.ts`: the multi-dish order, kept in localStorage. `src/lib/cart-message.ts` writes its WhatsApp message.
+- `src/lib/menu-photos.ts`: the item thumbnails (`src/assets/images/menu/`).
 - `src/assets/images/*`: optimised images. Sources and upgrade plan: `IMAGES.md`.
 
 ## Notes

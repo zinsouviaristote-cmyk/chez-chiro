@@ -1,33 +1,36 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { callLink, orderLink } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 import { PhoneIcon, WhatsAppIcon } from "./icons";
 
-/**
- * Sticky WhatsApp + call bar on mobile. It slides in once the hero
- * (any element with [data-hero]) has left the screen.
- */
-export function MobileOrderBar() {
-  const [visible, setVisible] = useState(false);
+/** true once the hero (any element with [data-hero]) has scrolled away. `page` re-runs it after a navigation. */
+export function useHeroGone(page?: string) {
+  const [gone, setGone] = useState(false);
 
   useEffect(() => {
     const hero = document.querySelector("[data-hero]");
     if (!hero) {
-      const onScroll = () => setVisible(window.scrollY > 420);
+      const onScroll = () => setGone(window.scrollY > 420);
       onScroll();
       window.addEventListener("scroll", onScroll, { passive: true });
       return () => window.removeEventListener("scroll", onScroll);
     }
     const io = new IntersectionObserver(
-      ([entry]) => setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0),
+      ([entry]) => setGone(!entry.isIntersecting && entry.boundingClientRect.top < 0),
       { threshold: 0 },
     );
     io.observe(hero);
     return () => io.disconnect();
-  }, []);
+  }, [page]);
 
+  return gone;
+}
+
+/** Sticky WhatsApp + call bar on mobile. */
+export function QuickOrderBar({ visible }: { visible: boolean }) {
   return (
     <div
       inert={!visible}
@@ -48,4 +51,16 @@ export function MobileOrderBar() {
       </div>
     </div>
   );
+}
+
+/**
+ * Site-wide mobile bar: slides in once the hero has left the screen.
+ * /menu renders its own (<MenuOrderBar />), which turns into the order bar
+ * as soon as a dish is added.
+ */
+export function MobileOrderBar() {
+  const pathname = usePathname();
+  const gone = useHeroGone(pathname);
+  if (pathname === "/menu") return null;
+  return <QuickOrderBar visible={gone} />;
 }

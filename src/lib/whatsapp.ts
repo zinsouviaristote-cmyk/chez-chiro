@@ -5,6 +5,11 @@ function wa(number: string, text: string) {
   return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
 }
 
+/** Any prefilled message to the ordering number (used by the multi-dish order on /menu). */
+export function whatsappLink(text: string) {
+  return wa(PHONES.whatsapp.e164, text);
+}
+
 /** Generic order message, used by the main CTAs. `area` prefills the neighbourhood (e.g. "Togba (zone B)"). */
 export function orderLink(area?: string) {
   return wa(
@@ -52,6 +57,18 @@ export function dishOrderLink(name: string, fromPrice?: number, single = false) 
       "Mon choix / accompagnement : ",
       "Quantité : ",
       "Mon quartier : ",
+    ].join("\n"),
+  );
+}
+
+/** A dish searched on /menu and not found: ask before ordering. */
+export function menuQuestionLink(query: string) {
+  return wa(
+    PHONES.whatsapp.e164,
+    [
+      "Bonjour Chez Chiro 👋",
+      `Je cherche « ${query.trim()} » et je ne le trouve pas sur votre menu en ligne.`,
+      "Est-ce que vous le proposez ? Si oui, à quel prix ?",
     ].join("\n"),
   );
 }

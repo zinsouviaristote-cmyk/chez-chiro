@@ -181,3 +181,43 @@ export function BowlIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function SearchIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path fillRule="evenodd" clipRule="evenodd" d="M10.5 3a7.5 7.5 0 1 0 4.55 13.46l4.24 4.25a1 1 0 0 0 1.42-1.42l-4.25-4.24A7.5 7.5 0 0 0 10.5 3ZM5 10.5a5.5 5.5 0 1 1 11 0 5.5 5.5 0 0 1-11 0Z" />
+    </svg>
+  );
+}
+
+export function PlusIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path d="M12 4a1.5 1.5 0 0 1 1.5 1.5v5h5a1.5 1.5 0 0 1 0 3h-5v5a1.5 1.5 0 0 1-3 0v-5h-5a1.5 1.5 0 0 1 0-3h5v-5A1.5 1.5 0 0 1 12 4Z" />
+    </svg>
+  );
+}
+
+export function MinusIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path d="M4 12a1.5 1.5 0 0 1 1.5-1.5h13a1.5 1.5 0 0 1 0 3h-13A1.5 1.5 0 0 1 4 12Z" />
+    </svg>
+  );
+}
+
+export function SendIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...base(props)}>
+      <path d="M3.4 20.4 21.1 12.8a.9.9 0 0 0 0-1.6L3.4 3.6a.9.9 0 0 0-1.25 1.03L4 11l9 1-9 1-1.85 6.37a.9.9 0 0 0 1.25 1.03Z" />
+    </svg>
+  );
+}
+
+export function CheckDoubleIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 18 12" fill="currentColor" {...base(props)}>
+      <path d="M12.6.3a.9.9 0 0 1 .1 1.27l-6.2 7.3a.9.9 0 0 1-1.33.06L1.95 5.7a.9.9 0 1 1 1.27-1.27l2.52 2.52 5.6-6.56A.9.9 0 0 1 12.6.3Zm4.1 0a.9.9 0 0 1 .1 1.27l-6.2 7.3a.9.9 0 0 1-1.33.06l-.6-.6a.9.9 0 0 1 1.17-1.36l5.6-6.56A.9.9 0 0 1 16.7.3Z" />
+    </svg>
+  );
+}
