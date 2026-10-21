@@ -28,5 +28,11 @@ export function searchAreas(query: string): Area[] {
     .map(({ area }) => area);
 }
 
+/** The listed neighbourhood typed in full, whatever the accents and case ("togba", "Calavi"), if any. */
+export function findArea(name: string): Area | undefined {
+  const q = normalize(name);
+  return q ? AREAS.find((area) => area.keys.includes(q)) : undefined;
+}
+
 /** "Togba (zone B)": the neighbourhood as written in the WhatsApp message. */
 export const areaLabel = (area: Area) => `${area.name} (zone ${area.zone.zone})`;

@@ -1,3 +1,5 @@
+import type { OrderDetails } from "./cart-store";
+import { areaLabel, type Area } from "./delivery";
 import { orderName, type Dish } from "./menu";
 import { formatFcfa } from "./utils";
 import { whatsappLink } from "./whatsapp";
@@ -11,24 +13,31 @@ export function cartTotal(entries: CartEntry[]) {
   return { amount, from, count: entries.reduce((n, { qty }) => n + qty, 0) };
 }
 
-/** One prefilled WhatsApp message for the whole order (format of the site's other order messages). */
-export function cartOrderLink(entries: CartEntry[], area?: string) {
+/**
+ * One prefilled WhatsApp message for the whole order, complete for the
+ * kitchen: dishes, précisions, neighbourhood, delivery, total. `area` is the
+ * listed neighbourhood matching `details.quartier`; without it, the fee is
+ * left to Chez Chiro.
+ */
+export function cartOrderLink(entries: CartEntry[], details: OrderDetails, area?: Area) {
   const { amount, from } = cartTotal(entries);
-  const lines = entries.map(
-    ({ dish, qty }) => `• ${qty} × ${orderName(dish)} : ${dish.single ? "" : "à partir de"}${formatFcfa(dish.price * qty)}`,
-  );
+  const rate = area?.zone[details.livraison];
+  const precisions = details.precisions.trim();
+  const total = `${from ? "à partir de " : ""}${formatFcfa(amount + (rate?.price ?? 0))}`;
   return whatsappLink(
     [
       "Bonjour Chez Chiro 👋",
       "Je voudrais commander :",
-      "",
-      ...lines,
-      "",
-      "Mes choix (accompagnement, viande, poisson) : ",
-      `Mon quartier : ${area ?? ""}`,
-      "Livraison standard ou premium : ",
-      "",
-      `Total indicatif : ${from ? "à partir de " : ""}${formatFcfa(amount)}, hors livraison. À confirmer par Chez Chiro.`,
+      ...entries.map(
+        ({ dish, qty }) => `- ${qty} × ${orderName(dish)} (${dish.single ? "" : "dès "}${formatFcfa(dish.price)})`,
+      ),
+      ...(precisions ? [`Précisions : ${precisions}`] : []),
+      `Quartier : ${area ? areaLabel(area) : details.quartier.trim()}`,
+      rate
+        ? `Livraison : ${details.livraison}, ${formatFcfa(rate.price)} (${rate.time})`
+        : "Livraison : frais à confirmer",
+      `Total indicatif : ${total}, ${rate ? "livraison comprise" : "hors livraison"}`,
+      "Merci de me confirmer le total.",
     ].join("\n"),
   );
 }

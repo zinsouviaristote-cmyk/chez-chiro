@@ -1,6 +1,7 @@
 "use client";
 
 import { useSelectedArea } from "@/lib/area-store";
+import { areaLabel } from "@/lib/delivery";
 import { cn } from "@/lib/utils";
 import { callLink, orderLink } from "@/lib/whatsapp";
 import { PhoneIcon, WhatsAppIcon } from "../icons";
@@ -10,7 +11,8 @@ import { PhoneIcon, WhatsAppIcon } from "../icons";
  * picked in the delivery finder, the WhatsApp message already includes it.
  */
 export function OrderButtons() {
-  const area = useSelectedArea();
+  const selected = useSelectedArea();
+  const area = selected && areaLabel(selected);
   return (
     <div className="md:shrink-0">
       <div className="flex flex-col gap-3 sm:flex-row">

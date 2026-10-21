@@ -2,8 +2,8 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import { getImageProps } from "next/image";
 import { preload } from "react-dom";
-import heroDesktop from "@/assets/images/hero-poulet-desktop.jpg";
-import heroMobile from "@/assets/images/hero-poulet-mobile.jpg";
+import heroDesktop from "@/assets/images/hero-ia-desktop.jpg";
+import heroMobile from "@/assets/images/hero-ia-mobile.jpg";
 import { GOOGLE, SOCIALS } from "@/lib/site";
 import { orderLink } from "@/lib/whatsapp";
 import { cn, formatCompact } from "@/lib/utils";
@@ -13,7 +13,24 @@ import { HeroWordLoop } from "./hero-word-loop";
 // The moments Chez Chiro cooks for. Never a dish name: the photo shows one dish.
 const MOMENTS = ["déjeuner", "dîner", "repas de famille", "repas d'équipe"];
 
-const ALT = "Poulet bicyclette braisé Chez Chiro, garni de tomates, d'oignons et de piment vert";
+const ALT =
+  "Plateau de poulet bicyclette braisé garni de tomates, d'oignons et de piment vert, avec poisson braisé, alloco et piment";
+
+// Next never enlarges an image: a width above the file's own is served at the
+// file's width, so the srcset says so and keeps a single entry for it.
+function nativeSrcSet(srcSet: string | undefined, width: number) {
+  const seen = new Set<number>();
+  return srcSet
+    ?.split(", ")
+    .flatMap((candidate) => {
+      const [url, w] = candidate.split(" ");
+      const actual = Math.min(parseInt(w), width);
+      if (seen.has(actual)) return [];
+      seen.add(actual);
+      return [`${url} ${actual}w`];
+    })
+    .join(", ");
+}
 
 // Static numbers: never animated (the old counter showed "1,8/5" mid-run).
 const PROOF = [
@@ -35,16 +52,18 @@ const delay = (d: number) => ({ "--d": `${d}s` }) as CSSProperties;
 const word = (i: number) => ({ "--i": i }) as CSSProperties;
 
 export function Hero() {
-  // Art direction: a landscape crop from 768px, a portrait crop below.
-  // Both are preloaded with a media query, so each device fetches one file.
-  // Quality 50 on mobile: the photo sits under a dark brown overlay.
-  const common = { alt: ALT, loading: "eager", fetchPriority: "high", sizes: "100vw" } as const;
+  // Art direction: the wide frame from 768px, a portrait crop on the chicken
+  // tray below. Both are preloaded with a media query, so each device fetches
+  // one file. Both files are the AI image at its native size (1672 × 941).
+  const common = { alt: ALT, loading: "eager", fetchPriority: "high", sizes: "100vw", quality: 60 } as const;
   const {
-    props: { srcSet: desktopSrcSet, src: desktopSrc },
-  } = getImageProps({ ...common, src: heroDesktop, quality: 60 });
+    props: { srcSet: desktopAll, src: desktopSrc },
+  } = getImageProps({ ...common, src: heroDesktop });
   const {
-    props: { srcSet: mobileSrcSet, ...img },
-  } = getImageProps({ ...common, src: heroMobile, quality: 50 });
+    props: { srcSet: mobileAll, ...img },
+  } = getImageProps({ ...common, src: heroMobile });
+  const desktopSrcSet = nativeSrcSet(desktopAll, heroDesktop.width);
+  const mobileSrcSet = nativeSrcSet(mobileAll, heroMobile.width);
 
   preload(img.src, {
     as: "image",
@@ -74,8 +93,8 @@ export function Hero() {
             <img {...img} srcSet={mobileSrcSet} alt={ALT} className="h-full w-full object-cover" />
           </picture>
         </div>
-        {/* Dark enough for centred text over the busiest part of the photo (temporary photo). */}
-        <div aria-hidden className="absolute inset-0 bg-brown/70" />
+        {/* Brown overlay over the AI photo: darker on phones, where the text sits on the chicken tray. */}
+        <div aria-hidden className="absolute inset-0 bg-brown/80 md:bg-brown/55" />
       </div>
 
       <div className="container-site flex flex-1 flex-col items-center justify-center pb-12 pt-14 text-center md:pb-16 md:pt-20">

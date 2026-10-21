@@ -1,14 +1,16 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import type { Area } from "./delivery";
 
 // The neighbourhood picked in the delivery finder, shared with the order
-// buttons at the end of "Infos pratiques" so their WhatsApp message includes it.
-let selected: string | undefined;
+// buttons at the end of "Infos pratiques" so their WhatsApp message includes it,
+// and with the order drawer of /menu, which starts from it.
+let selected: Area | undefined;
 const listeners = new Set<() => void>();
 
-export function setSelectedArea(label: string | undefined) {
-  selected = label;
+export function setSelectedArea(area: Area | undefined) {
+  selected = area;
   listeners.forEach((listener) => listener());
 }
 

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import bannerImg from "@/assets/images/hero-poulet-desktop.jpg";
+import bannerImg from "@/assets/images/hero-ia-desktop.jpg";
 import logoMark from "@/assets/images/logo-mark.png";
 import { DELIVERY_ZONES, GOOGLE } from "@/lib/site";
 import { formatFcfa } from "@/lib/utils";
@@ -27,7 +27,7 @@ export function StoreHeader() {
         <div className="relative h-44 overflow-hidden bg-brown sm:h-56 md:h-72 md:rounded-lg">
           <Image
             src={bannerImg}
-            alt="Poulet bicyclette braisé Chez Chiro, garni de tomates, d'oignons et de piment vert"
+            alt="Plateau de poulet bicyclette braisé garni de tomates, d'oignons et de piment vert, avec poisson braisé, alloco et piment"
             fill
             priority
             fetchPriority="high"
