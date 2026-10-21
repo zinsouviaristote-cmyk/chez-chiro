@@ -2,7 +2,7 @@
 // channels (site, TikTok, Facebook, posters) or its Google listing.
 // Items marked "à confirmer" are listed in IMAGES.md / the V1 summary.
 
-export const SITE_URL = "https://www.chezchiro.com";
+export const SITE_URL = "https://chez-chiro.vercel.app";
 
 export const BRAND = {
   name: "Chez Chiro",

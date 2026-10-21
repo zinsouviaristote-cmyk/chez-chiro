@@ -43,6 +43,7 @@ export const metadata: Metadata = {
     description,
   },
   formatDetection: { telephone: false },
+  robots: { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
